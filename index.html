@@ -1,35 +1,1343 @@
+```html
 <!DOCTYPE html>
 <html lang="tr">
+
 <head>
+
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <title>Berat Website</title>
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
 
-    <link rel="stylesheet" href="style.css">
+    <title>BERAT</title>
+
+    <!-- SUPABASE -->
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+
+
+    <style>
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: Arial, sans-serif;
+        }
+
+
+        body {
+            background: #0f172a;
+            color: white;
+            min-height: 100vh;
+        }
+
+
+        /* =========================
+           NAVBAR
+        ========================= */
+
+        nav {
+            height: 70px;
+            background: #111827;
+
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+
+            padding: 0 30px;
+
+            border-bottom: 1px solid #263244;
+        }
+
+
+        .logo {
+            font-size: 25px;
+            font-weight: bold;
+            color: #60a5fa;
+            cursor: pointer;
+        }
+
+
+        .nav-links {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+
+        .nav-button {
+            border: none;
+            background: transparent;
+            color: #d1d5db;
+
+            padding: 10px 15px;
+
+            border-radius: 8px;
+
+            cursor: pointer;
+            font-size: 15px;
+        }
+
+
+        .nav-button:hover {
+            background: #1f2937;
+            color: white;
+        }
+
+
+        .nav-profile {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+
+        /* =========================
+           AVATAR
+        ========================= */
+
+        .avatar {
+            width: 40px;
+            height: 40px;
+
+            border-radius: 50%;
+
+            background: #2563eb;
+
+            display: flex;
+            align-items: center;
+            justify-content: center;
+
+            font-weight: bold;
+            font-size: 17px;
+
+            cursor: pointer;
+        }
+
+
+        .big-avatar {
+            width: 100px;
+            height: 100px;
+
+            border-radius: 50%;
+
+            background: #2563eb;
+
+            display: flex;
+            align-items: center;
+            justify-content: center;
+
+            font-size: 40px;
+            font-weight: bold;
+
+            margin: 0 auto 20px;
+        }
+
+
+        /* =========================
+           SAYFALAR
+        ========================= */
+
+        .page {
+            display: none;
+
+            max-width: 1000px;
+
+            margin: auto;
+
+            padding: 40px 20px;
+        }
+
+
+        .page.active {
+            display: block;
+        }
+
+
+        /* =========================
+           HOME
+        ========================= */
+
+        .hero {
+            text-align: center;
+
+            padding: 70px 20px;
+        }
+
+
+        .hero h1 {
+            font-size: 48px;
+            margin-bottom: 15px;
+        }
+
+
+        .hero p {
+            color: #9ca3af;
+            font-size: 18px;
+            margin-bottom: 30px;
+        }
+
+
+        .primary-button {
+            border: none;
+
+            background: #2563eb;
+            color: white;
+
+            padding: 14px 25px;
+
+            border-radius: 10px;
+
+            cursor: pointer;
+
+            font-size: 16px;
+        }
+
+
+        .primary-button:hover {
+            background: #1d4ed8;
+        }
+
+
+        /* =========================
+           CARDS
+        ========================= */
+
+        .card {
+            background: #1e293b;
+
+            border: 1px solid #334155;
+
+            border-radius: 15px;
+
+            padding: 25px;
+
+            margin-bottom: 20px;
+        }
+
+
+        .card h2 {
+            margin-bottom: 10px;
+        }
+
+
+        .card p {
+            color: #9ca3af;
+        }
+
+
+        /* =========================
+           PROFILE
+        ========================= */
+
+        .profile {
+            max-width: 500px;
+            margin: auto;
+            text-align: center;
+        }
+
+
+        .profile h1 {
+            margin-bottom: 5px;
+        }
+
+
+        .profile-email {
+            color: #9ca3af;
+            margin-bottom: 25px;
+        }
+
+
+        .input {
+            width: 100%;
+
+            padding: 13px;
+
+            margin-bottom: 12px;
+
+            background: #111827;
+
+            border: 1px solid #374151;
+
+            border-radius: 9px;
+
+            color: white;
+
+            outline: none;
+        }
+
+
+        .input:focus {
+            border-color: #3b82f6;
+        }
+
+
+        textarea.input {
+            resize: vertical;
+            min-height: 100px;
+        }
+
+
+        /* =========================
+           AUTH
+        ========================= */
+
+        .auth-container {
+            min-height: 100vh;
+
+            display: flex;
+
+            align-items: center;
+            justify-content: center;
+
+            padding: 20px;
+        }
+
+
+        .auth-box {
+            width: 100%;
+            max-width: 420px;
+
+            background: #1e293b;
+
+            border: 1px solid #334155;
+
+            border-radius: 18px;
+
+            padding: 30px;
+        }
+
+
+        .auth-box h1 {
+            text-align: center;
+
+            margin-bottom: 25px;
+
+            color: #60a5fa;
+        }
+
+
+        .auth-box h2 {
+            margin-bottom: 20px;
+        }
+
+
+        .auth-switch {
+            text-align: center;
+
+            color: #9ca3af;
+
+            margin-top: 18px;
+        }
+
+
+        .auth-switch span {
+            color: #60a5fa;
+
+            cursor: pointer;
+        }
+
+
+        .message {
+            text-align: center;
+
+            margin-top: 15px;
+
+            min-height: 20px;
+
+            color: #fbbf24;
+        }
+
+
+        /* =========================
+           LOGOUT
+        ========================= */
+
+        .logout-button {
+            width: 100%;
+
+            padding: 13px;
+
+            background: #dc2626;
+
+            color: white;
+
+            border: none;
+
+            border-radius: 9px;
+
+            cursor: pointer;
+
+            margin-top: 10px;
+
+            font-size: 15px;
+        }
+
+
+        .logout-button:hover {
+            background: #b91c1c;
+        }
+
+
+        /* =========================
+           RESPONSIVE
+        ========================= */
+
+        @media (max-width: 600px) {
+
+            nav {
+                padding: 0 15px;
+            }
+
+
+            .nav-links {
+                gap: 0;
+            }
+
+
+            .nav-button {
+                padding: 8px;
+                font-size: 13px;
+            }
+
+
+            .hero h1 {
+                font-size: 36px;
+            }
+
+        }
+
+    </style>
+
 </head>
+
 
 <body>
 
-    <nav>
-        <h2>BERAT</h2>
 
-        <div>
-            <a href="#">Ana Sayfa</a>
-            <a href="#">Hakkımda</a>
-            <a href="#">İletişim</a>
+<!-- =================================================
+     AUTH EKRANI
+================================================= -->
+
+<div id="authScreen" class="auth-container">
+
+    <!-- LOGIN -->
+
+    <div id="loginBox" class="auth-box">
+
+        <h1>BERAT</h1>
+
+        <h2>Giriş Yap</h2>
+
+
+        <input
+            id="loginEmail"
+            class="input"
+            type="email"
+            placeholder="E-posta"
+        >
+
+
+        <input
+            id="loginPassword"
+            class="input"
+            type="password"
+            placeholder="Şifre"
+        >
+
+
+        <button
+            class="primary-button"
+            style="width:100%"
+            onclick="login()"
+        >
+            Giriş Yap
+        </button>
+
+
+        <div class="auth-switch">
+
+            Hesabın yok mu?
+
+            <span onclick="showRegister()">
+                Kayıt Ol
+            </span>
+
         </div>
+
+
+        <div
+            id="loginMessage"
+            class="message"
+        ></div>
+
+    </div>
+
+
+    <!-- REGISTER -->
+
+    <div
+        id="registerBox"
+        class="auth-box"
+        style="display:none"
+    >
+
+        <h1>BERAT</h1>
+
+        <h2>Hesap Oluştur</h2>
+
+
+        <input
+            id="registerName"
+            class="input"
+            type="text"
+            placeholder="Kullanıcı adı"
+        >
+
+
+        <input
+            id="registerEmail"
+            class="input"
+            type="email"
+            placeholder="E-posta"
+        >
+
+
+        <input
+            id="registerPassword"
+            class="input"
+            type="password"
+            placeholder="Şifre"
+        >
+
+
+        <button
+            class="primary-button"
+            style="width:100%"
+            onclick="register()"
+        >
+            Kayıt Ol
+        </button>
+
+
+        <div class="auth-switch">
+
+            Zaten hesabın var mı?
+
+            <span onclick="showLogin()">
+                Giriş Yap
+            </span>
+
+        </div>
+
+
+        <div
+            id="registerMessage"
+            class="message"
+        ></div>
+
+    </div>
+
+</div>
+
+
+
+<!-- =================================================
+     WEBSITE
+================================================= -->
+
+<div id="website" style="display:none">
+
+
+    <!-- NAVBAR -->
+
+    <nav>
+
+        <div
+            class="logo"
+            onclick="showPage('home')"
+        >
+            BERAT
+        </div>
+
+
+        <div class="nav-links">
+
+            <button
+                class="nav-button"
+                onclick="showPage('home')"
+            >
+                🏠 Ana Sayfa
+            </button>
+
+
+            <button
+                class="nav-button"
+                onclick="showPage('profile')"
+            >
+                👤 Profil
+            </button>
+
+
+            <div
+                class="avatar"
+                id="navAvatar"
+                onclick="showPage('profile')"
+            >
+                ?
+            </div>
+
+        </div>
+
     </nav>
 
-    <main>
-        <h1>Hoş Geldin 👋</h1>
 
-        <p>Bu benim ilk website'm.</p>
 
-        <button onclick="mesajGoster()">Bana tıkla</button>
-    </main>
+    <!-- =================================================
+         ANA SAYFA
+    ================================================= -->
 
-    <script src="script.js"></script>
+    <section
+        id="home"
+        class="page active"
+    >
+
+        <div class="hero">
+
+            <h1 id="welcomeTitle">
+                Hoş Geldin 👋
+            </h1>
+
+            <p>
+                Kendi hesabına özel website.
+            </p>
+
+            <button
+                class="primary-button"
+                onclick="showPage('profile')"
+            >
+                Profilime Git
+            </button>
+
+        </div>
+
+
+        <div class="card">
+
+            <h2>👤 Hesabın</h2>
+
+            <p id="homeEmail">
+                E-posta yükleniyor...
+            </p>
+
+        </div>
+
+
+        <div class="card">
+
+            <h2>🔒 Özel Alan</h2>
+
+            <p>
+                Bu bilgiler sadece senin hesabına
+                ait ve diğer kullanıcılar tarafından
+                görülemez.
+            </p>
+
+        </div>
+
+    </section>
+
+
+
+    <!-- =================================================
+         PROFİL
+    ================================================= -->
+
+    <section
+        id="profile"
+        class="page"
+    >
+
+        <div class="profile">
+
+            <h1>Profilim</h1>
+
+            <p
+                id="profileEmail"
+                class="profile-email"
+            >
+                -
+            </p>
+
+
+            <div
+                id="bigAvatar"
+                class="big-avatar"
+            >
+                ?
+            </div>
+
+
+            <input
+                id="profileUsername"
+                class="input"
+                type="text"
+                placeholder="Kullanıcı adı"
+            >
+
+
+            <textarea
+                id="profileBio"
+                class="input"
+                placeholder="Kendinden bahset..."
+            ></textarea>
+
+
+            <button
+                class="primary-button"
+                style="width:100%"
+                onclick="saveProfile()"
+            >
+                Profili Kaydet
+            </button>
+
+
+            <button
+                class="logout-button"
+                onclick="logout()"
+            >
+                🚪 Çıkış Yap
+            </button>
+
+
+            <div
+                id="profileMessage"
+                class="message"
+            ></div>
+
+        </div>
+
+    </section>
+
+
+</div>
+
+
+
+<script>
+
+
+/* =====================================================
+   SUPABASE
+===================================================== */
+
+
+const SUPABASE_URL =
+    "https://llnvunuhvyiqrqaltxhc.supabase.co";
+
+
+const SUPABASE_KEY =
+    "sb_publishable_Cypd2x0GiQS1_I5GzPxG0Q_jgmuX433";
+
+
+const supabaseClient =
+    window.supabase.createClient(
+        SUPABASE_URL,
+        SUPABASE_KEY
+    );
+
+
+
+/* =====================================================
+   AUTH SAYFALARI
+===================================================== */
+
+
+function showRegister() {
+
+    document.getElementById("loginBox")
+        .style.display = "none";
+
+    document.getElementById("registerBox")
+        .style.display = "block";
+
+}
+
+
+function showLogin() {
+
+    document.getElementById("registerBox")
+        .style.display = "none";
+
+    document.getElementById("loginBox")
+        .style.display = "block";
+
+}
+
+
+
+/* =====================================================
+   REGISTER
+===================================================== */
+
+
+async function register() {
+
+    const name =
+        document
+        .getElementById("registerName")
+        .value
+        .trim();
+
+
+    const email =
+        document
+        .getElementById("registerEmail")
+        .value
+        .trim();
+
+
+    const password =
+        document
+        .getElementById("registerPassword")
+        .value;
+
+
+    const message =
+        document.getElementById("registerMessage");
+
+
+    if (!name || !email || !password) {
+
+        message.textContent =
+            "Bütün alanları doldur.";
+
+        return;
+
+    }
+
+
+    if (password.length < 6) {
+
+        message.textContent =
+            "Şifre en az 6 karakter olmalı.";
+
+        return;
+
+    }
+
+
+    message.textContent =
+        "Hesap oluşturuluyor...";
+
+
+    const { data, error } =
+        await supabaseClient.auth.signUp({
+
+            email: email,
+
+            password: password,
+
+            options: {
+
+                data: {
+                    username: name
+                }
+
+            }
+
+        });
+
+
+    if (error) {
+
+        message.textContent =
+            error.message;
+
+        return;
+
+    }
+
+
+    if (!data.user) {
+
+        message.textContent =
+            "Hesap oluşturulamadı.";
+
+        return;
+
+    }
+
+
+    /*
+       PROFİL OLUŞTUR
+    */
+
+    if (data.session) {
+
+        await createProfile(
+            data.user.id,
+            name
+        );
+
+        await loadUser();
+
+    } else {
+
+        message.textContent =
+            "Hesap oluşturuldu. E-postanı doğrula ve giriş yap.";
+
+    }
+
+}
+
+
+
+/* =====================================================
+   PROFILE OLUŞTUR
+===================================================== */
+
+
+async function createProfile(
+    userId,
+    username
+) {
+
+    const { error } =
+        await supabaseClient
+        .from("profiles")
+        .insert({
+
+            id: userId,
+
+            username: username,
+
+            bio: "",
+
+            avatar: ""
+
+        });
+
+
+    if (error) {
+
+        console.log(
+            "Profil oluşturma hatası:",
+            error
+        );
+
+    }
+
+}
+
+
+
+/* =====================================================
+   LOGIN
+===================================================== */
+
+
+async function login() {
+
+    const email =
+        document
+        .getElementById("loginEmail")
+        .value
+        .trim();
+
+
+    const password =
+        document
+        .getElementById("loginPassword")
+        .value;
+
+
+    const message =
+        document.getElementById("loginMessage");
+
+
+    if (!email || !password) {
+
+        message.textContent =
+            "E-posta ve şifreyi gir.";
+
+        return;
+
+    }
+
+
+    message.textContent =
+        "Giriş yapılıyor...";
+
+
+    const { data, error } =
+        await supabaseClient.auth
+        .signInWithPassword({
+
+            email: email,
+
+            password: password
+
+        });
+
+
+    if (error) {
+
+        message.textContent =
+            error.message;
+
+        return;
+
+    }
+
+
+    await loadUser();
+
+}
+
+
+
+/* =====================================================
+   LOAD USER
+===================================================== */
+
+
+async function loadUser() {
+
+    const { data, error } =
+        await supabaseClient.auth
+        .getUser();
+
+
+    if (error || !data.user) {
+
+        return;
+
+    }
+
+
+    const user =
+        data.user;
+
+
+    /*
+       PROFİLİ AL
+    */
+
+    let { data: profile } =
+        await supabaseClient
+        .from("profiles")
+        .select("*")
+        .eq("id", user.id)
+        .maybeSingle();
+
+
+    /*
+       Eğer profil yoksa oluştur
+    */
+
+    if (!profile) {
+
+        const username =
+            user.user_metadata?.username
+            || "Kullanıcı";
+
+
+        await createProfile(
+            user.id,
+            username
+        );
+
+
+        const result =
+            await supabaseClient
+            .from("profiles")
+            .select("*")
+            .eq("id", user.id)
+            .single();
+
+
+        profile =
+            result.data;
+
+    }
+
+
+    /*
+       WEBSITE GÖSTER
+    */
+
+    document.getElementById("authScreen")
+        .style.display = "none";
+
+
+    document.getElementById("website")
+        .style.display = "block";
+
+
+    /*
+       KULLANICI ADI
+    */
+
+    const username =
+        profile?.username
+        || user.user_metadata?.username
+        || "Kullanıcı";
+
+
+    /*
+       AVATAR HARFİ
+    */
+
+    const firstLetter =
+        username
+        .charAt(0)
+        .toUpperCase();
+
+
+    document.getElementById("navAvatar")
+        .textContent = firstLetter;
+
+
+    document.getElementById("bigAvatar")
+        .textContent = firstLetter;
+
+
+    /*
+       ANA SAYFA
+    */
+
+    document.getElementById("welcomeTitle")
+        .textContent =
+        "Hoş Geldin, " +
+        username +
+        " 👋";
+
+
+    document.getElementById("homeEmail")
+        .textContent =
+        user.email;
+
+
+    /*
+       PROFİL
+    */
+
+    document.getElementById("profileEmail")
+        .textContent =
+        user.email;
+
+
+    document.getElementById("profileUsername")
+        .value =
+        username;
+
+
+    document.getElementById("profileBio")
+        .value =
+        profile?.bio || "";
+
+}
+
+
+
+/* =====================================================
+   PROFİL KAYDET
+===================================================== */
+
+
+async function saveProfile() {
+
+    const { data: userData } =
+        await supabaseClient.auth
+        .getUser();
+
+
+    const user =
+        userData.user;
+
+
+    if (!user) {
+
+        return;
+
+    }
+
+
+    const username =
+        document
+        .getElementById("profileUsername")
+        .value
+        .trim();
+
+
+    const bio =
+        document
+        .getElementById("profileBio")
+        .value
+        .trim();
+
+
+    const message =
+        document
+        .getElementById("profileMessage");
+
+
+    if (!username) {
+
+        message.textContent =
+            "Kullanıcı adı boş olamaz.";
+
+        return;
+
+    }
+
+
+    message.textContent =
+        "Kaydediliyor...";
+
+
+    const { error } =
+        await supabaseClient
+        .from("profiles")
+        .update({
+
+            username: username,
+
+            bio: bio
+
+        })
+        .eq("id", user.id);
+
+
+    if (error) {
+
+        message.textContent =
+            "Hata: " + error.message;
+
+        return;
+
+    }
+
+
+    /*
+       AVATAR
+    */
+
+    const firstLetter =
+        username
+        .charAt(0)
+        .toUpperCase();
+
+
+    document.getElementById("navAvatar")
+        .textContent = firstLetter;
+
+
+    document.getElementById("bigAvatar")
+        .textContent = firstLetter;
+
+
+    document.getElementById("welcomeTitle")
+        .textContent =
+        "Hoş Geldin, " +
+        username +
+        " 👋";
+
+
+    message.textContent =
+        "Profil başarıyla kaydedildi!";
+
+
+    setTimeout(() => {
+
+        message.textContent = "";
+
+    }, 2500);
+
+}
+
+
+
+/* =====================================================
+   SAYFA DEĞİŞTİR
+===================================================== */
+
+
+function showPage(pageName) {
+
+    const pages =
+        document.querySelectorAll(".page");
+
+
+    pages.forEach(page => {
+
+        page.classList.remove("active");
+
+    });
+
+
+    document
+        .getElementById(pageName)
+        .classList.add("active");
+
+}
+
+
+
+/* =====================================================
+   LOGOUT
+===================================================== */
+
+
+async function logout() {
+
+    await supabaseClient.auth.signOut();
+
+
+    document.getElementById("website")
+        .style.display = "none";
+
+
+    document.getElementById("authScreen")
+        .style.display = "flex";
+
+
+    showLogin();
+
+}
+
+
+
+/* =====================================================
+   SAYFA AÇILDIĞINDA OTURUMU KONTROL ET
+===================================================== */
+
+
+async function checkSession() {
+
+    const { data } =
+        await supabaseClient.auth
+        .getSession();
+
+
+    if (data.session) {
+
+        await loadUser();
+
+    }
+
+}
+
+
+checkSession();
+
+
+</script>
 
 </body>
+
 </html>
+```
