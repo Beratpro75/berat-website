@@ -1,0 +1,602 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>BERAT Racing</title>
+
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background: #0f172a;
+            color: white;
+            font-family: Arial, sans-serif;
+        }
+
+        .game-container {
+            text-align: center;
+            width: 100%;
+            max-width: 450px;
+            padding: 20px;
+        }
+
+        h1 {
+            margin-bottom: 10px;
+            font-size: 32px;
+        }
+
+        .score {
+            font-size: 20px;
+            margin-bottom: 15px;
+        }
+
+        canvas {
+            width: 400px;
+            max-width: 100%;
+            height: auto;
+            background: #333;
+            border-radius: 15px;
+            border: 3px solid #475569;
+            display: block;
+            margin: auto;
+        }
+
+        .buttons {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            margin-top: 15px;
+        }
+
+        button,
+        .back-button {
+            border: none;
+            padding: 12px 22px;
+            border-radius: 10px;
+            background: #2563eb;
+            color: white;
+            font-size: 16px;
+            cursor: pointer;
+            text-decoration: none;
+        }
+
+        button:hover,
+        .back-button:hover {
+            opacity: 0.85;
+        }
+
+        .controls {
+            margin-top: 15px;
+            display: flex;
+            justify-content: center;
+            gap: 25px;
+        }
+
+        .control-button {
+            width: 70px;
+            height: 55px;
+            font-size: 25px;
+            padding: 0;
+        }
+
+        .message {
+            margin-top: 12px;
+            min-height: 25px;
+            font-size: 16px;
+        }
+    </style>
+</head>
+
+<body>
+
+<div class="game-container">
+
+    <h1>🏎️ Racing</h1>
+
+    <div class="score">
+        Score: <span id="score">0</span>
+    </div>
+
+    <canvas id="gameCanvas" width="400" height="600"></canvas>
+
+    <div class="message" id="message">
+        Press Start to play!
+    </div>
+
+    <div class="buttons">
+        <button onclick="startGame()">Start Game</button>
+
+        <a href="../index.html" class="back-button">
+            Back
+        </a>
+    </div>
+
+    <div class="controls">
+        <button class="control-button" onclick="moveLeft()">⬅️</button>
+        <button class="control-button" onclick="moveRight()">➡️</button>
+    </div>
+
+</div>
+
+<script>
+
+const canvas = document.getElementById("gameCanvas");
+const ctx = canvas.getContext("2d");
+
+const scoreElement = document.getElementById("score");
+const messageElement = document.getElementById("message");
+
+let gameRunning = false;
+let score = 0;
+
+let roadSpeed = 5;
+
+const player = {
+    x: 175,
+    y: 500,
+    width: 50,
+    height: 80,
+    speed: 7
+};
+
+let enemies = [];
+
+let keys = {
+    left: false,
+    right: false
+};
+
+
+/* =========================
+   DRAW ROAD
+========================= */
+
+function drawRoad() {
+
+    ctx.fillStyle = "#333";
+    ctx.fillRect(0, 0, canvas.width, canvas.height);
+
+    // Road borders
+    ctx.fillStyle = "#ffffff";
+
+    ctx.fillRect(20, 0, 8, canvas.height);
+    ctx.fillRect(372, 0, 8, canvas.height);
+
+    // Road lines
+    ctx.fillStyle = "#facc15";
+
+    for (let y = -40; y < canvas.height; y += 100) {
+
+        ctx.fillRect(
+            195,
+            y,
+            10,
+            60
+        );
+    }
+}
+
+
+/* =========================
+   DRAW PLAYER
+========================= */
+
+function drawPlayer() {
+
+    ctx.fillStyle = "#2563eb";
+
+    ctx.fillRect(
+        player.x,
+        player.y,
+        player.width,
+        player.height
+    );
+
+    // Windows
+    ctx.fillStyle = "#bfdbfe";
+
+    ctx.fillRect(
+        player.x + 10,
+        player.y + 10,
+        30,
+        20
+    );
+
+    // Wheels
+    ctx.fillStyle = "#111";
+
+    ctx.fillRect(
+        player.x - 5,
+        player.y + 10,
+        8,
+        20
+    );
+
+    ctx.fillRect(
+        player.x + player.width - 3,
+        player.y + 10,
+        8,
+        20
+    );
+
+    ctx.fillRect(
+        player.x - 5,
+        player.y + 50,
+        8,
+        20
+    );
+
+    ctx.fillRect(
+        player.x + player.width - 3,
+        player.y + 50,
+        8,
+        20
+    );
+}
+
+
+/* =========================
+   CREATE ENEMY
+========================= */
+
+function createEnemy() {
+
+    const enemy = {
+
+        x: Math.floor(
+            Math.random() * 6
+        ) * 55 + 40,
+
+        y: -100,
+
+        width: 50,
+
+        height: 80,
+
+        speed:
+            roadSpeed +
+            Math.random() * 3
+    };
+
+    enemies.push(enemy);
+}
+
+
+/* =========================
+   DRAW ENEMIES
+========================= */
+
+function drawEnemies() {
+
+    enemies.forEach(enemy => {
+
+        ctx.fillStyle = "#ef4444";
+
+        ctx.fillRect(
+            enemy.x,
+            enemy.y,
+            enemy.width,
+            enemy.height
+        );
+
+        // Windows
+        ctx.fillStyle = "#fecaca";
+
+        ctx.fillRect(
+            enemy.x + 10,
+            enemy.y + 10,
+            30,
+            20
+        );
+
+        // Wheels
+        ctx.fillStyle = "#111";
+
+        ctx.fillRect(
+            enemy.x - 5,
+            enemy.y + 10,
+            8,
+            20
+        );
+
+        ctx.fillRect(
+            enemy.x + enemy.width - 3,
+            enemy.y + 10,
+            8,
+            20
+        );
+
+        ctx.fillRect(
+            enemy.x - 5,
+            enemy.y + 50,
+            8,
+            20
+        );
+
+        ctx.fillRect(
+            enemy.x + enemy.width - 3,
+            enemy.y + 50,
+            8,
+            20
+        );
+    });
+}
+
+
+/* =========================
+   UPDATE
+========================= */
+
+function update() {
+
+    if (!gameRunning)
+        return;
+
+    // Move player
+    if (keys.left) {
+
+        player.x -= player.speed;
+
+    }
+
+    if (keys.right) {
+
+        player.x += player.speed;
+
+    }
+
+
+    // Keep player on road
+    if (player.x < 30) {
+
+        player.x = 30;
+
+    }
+
+    if (
+        player.x +
+        player.width >
+        370
+    ) {
+
+        player.x =
+            370 -
+            player.width;
+
+    }
+
+
+    // Move enemies
+    enemies.forEach(enemy => {
+
+        enemy.y += enemy.speed;
+
+    });
+
+
+    // Remove enemies
+    enemies =
+        enemies.filter(
+            enemy =>
+                enemy.y <
+                canvas.height + 100
+        );
+
+
+    // Randomly create enemies
+    if (
+        Math.random() <
+        0.025
+    ) {
+
+        createEnemy();
+
+    }
+
+
+    // Collision
+    enemies.forEach(enemy => {
+
+        if (
+            player.x <
+                enemy.x +
+                enemy.width &&
+
+            player.x +
+                player.width >
+                enemy.x &&
+
+            player.y <
+                enemy.y +
+                enemy.height &&
+
+            player.y +
+                player.height >
+                enemy.y
+        ) {
+
+            gameOver();
+
+        }
+
+    });
+
+
+    score++;
+
+    scoreElement.textContent =
+        Math.floor(score / 10);
+
+
+    // Increase difficulty
+    if (
+        score % 500 === 0
+    ) {
+
+        roadSpeed += 0.5;
+
+    }
+
+}
+
+
+/* =========================
+   DRAW
+========================= */
+
+function draw() {
+
+    drawRoad();
+
+    drawPlayer();
+
+    drawEnemies();
+
+}
+
+
+/* =========================
+   GAME LOOP
+========================= */
+
+function gameLoop() {
+
+    update();
+
+    draw();
+
+    requestAnimationFrame(
+        gameLoop
+    );
+
+}
+
+
+/* =========================
+   START GAME
+========================= */
+
+function startGame() {
+
+    score = 0;
+
+    roadSpeed = 5;
+
+    enemies = [];
+
+    player.x = 175;
+
+    gameRunning = true;
+
+    scoreElement.textContent = "0";
+
+    messageElement.textContent =
+        "Avoid the cars!";
+
+}
+
+
+/* =========================
+   GAME OVER
+========================= */
+
+function gameOver() {
+
+    gameRunning = false;
+
+    messageElement.textContent =
+        "💥 Game Over! Press Start to try again.";
+
+}
+
+
+/* =========================
+   BUTTON CONTROLS
+========================= */
+
+function moveLeft() {
+
+    player.x -= 50;
+
+}
+
+
+function moveRight() {
+
+    player.x += 50;
+
+}
+
+
+/* =========================
+   KEYBOARD CONTROLS
+========================= */
+
+document.addEventListener(
+    "keydown",
+    event => {
+
+        if (
+            event.key === "ArrowLeft"
+        ) {
+
+            keys.left = true;
+
+        }
+
+        if (
+            event.key === "ArrowRight"
+        ) {
+
+            keys.right = true;
+
+        }
+
+    }
+);
+
+
+document.addEventListener(
+    "keyup",
+    event => {
+
+        if (
+            event.key === "ArrowLeft"
+        ) {
+
+            keys.left = false;
+
+        }
+
+        if (
+            event.key === "ArrowRight"
+        ) {
+
+            keys.right = false;
+
+        }
+
+    }
+);
+
+
+/* =========================
+   START LOOP
+========================= */
+
+gameLoop();
+
+</script>
+
+</body>
+</html>
