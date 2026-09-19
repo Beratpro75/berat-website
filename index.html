@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
-   
+
 <head>
 
 <meta charset="UTF-8">
@@ -36,6 +36,10 @@ textarea {
     font-family: inherit;
 }
 
+button {
+    -webkit-tap-highlight-color: transparent;
+}
+
 
 /* =====================================================
    AUTH
@@ -43,14 +47,24 @@ textarea {
 
 .auth-container {
     min-height: 100vh;
+
     display: flex;
     align-items: center;
     justify-content: center;
+
     padding: 20px;
 
     background:
-        radial-gradient(circle at top left, #172554, transparent 35%),
-        radial-gradient(circle at bottom right, #1e3a8a, transparent 30%),
+        radial-gradient(
+            circle at top left,
+            #172554,
+            transparent 35%
+        ),
+        radial-gradient(
+            circle at bottom right,
+            #1e3a8a,
+            transparent 30%
+        ),
         #0b1120;
 }
 
@@ -74,9 +88,13 @@ textarea {
 
 .logo-title {
     text-align: center;
+
     font-size: 34px;
+
     font-weight: 800;
+
     color: #60a5fa;
+
     margin-bottom: 30px;
 }
 
@@ -106,7 +124,10 @@ textarea {
 
 .input:focus {
     border-color: #3b82f6;
-    box-shadow: 0 0 0 3px rgba(59,130,246,.12);
+
+    box-shadow:
+        0 0 0 3px
+        rgba(59,130,246,.12);
 }
 
 .primary-button {
@@ -114,11 +135,12 @@ textarea {
 
     border: none;
 
-    background: linear-gradient(
-        135deg,
-        #2563eb,
-        #3b82f6
-    );
+    background:
+        linear-gradient(
+            135deg,
+            #2563eb,
+            #3b82f6
+        );
 
     color: white;
 
@@ -137,25 +159,41 @@ textarea {
 
 .primary-button:hover {
     transform: translateY(-1px);
-    box-shadow: 0 10px 25px rgba(37,99,235,.3);
+
+    box-shadow:
+        0 10px 25px
+        rgba(37,99,235,.3);
+}
+
+.primary-button:disabled {
+    opacity: .6;
+    cursor: not-allowed;
+    transform: none;
 }
 
 .auth-switch {
     text-align: center;
+
     color: #94a3b8;
+
     margin-top: 20px;
 }
 
 .auth-switch span {
     color: #60a5fa;
+
     cursor: pointer;
+
     font-weight: bold;
 }
 
 .message {
     text-align: center;
+
     margin-top: 15px;
+
     min-height: 20px;
+
     color: #fbbf24;
 }
 
@@ -176,9 +214,11 @@ textarea {
 nav {
     height: 72px;
 
-    background: rgba(15,23,42,.88);
+    background:
+        rgba(15,23,42,.88);
 
-    border-bottom: 1px solid #1e293b;
+    border-bottom:
+        1px solid #1e293b;
 
     display: flex;
 
@@ -192,37 +232,57 @@ nav {
 
     top: 0;
 
-    z-index: 100;
+    z-index: 1000;
 
     backdrop-filter: blur(15px);
 }
 
 .logo {
     font-size: 25px;
+
     font-weight: 800;
+
     color: #60a5fa;
+
     cursor: pointer;
 }
 
 .nav-right {
     display: flex;
+
     align-items: center;
-    gap: 8px;
+
+    gap: 6px;
 }
 
 .nav-button {
     border: none;
+
     background: transparent;
+
     color: #94a3b8;
-    padding: 10px 14px;
+
+    padding: 10px 13px;
+
     border-radius: 9px;
+
     cursor: pointer;
+
     font-size: 14px;
+
+    transition: .2s;
 }
 
 .nav-button:hover {
     background: #1e293b;
+
     color: white;
+}
+
+.nav-button.active {
+    background: #172554;
+
+    color: #60a5fa;
 }
 
 .avatar {
@@ -248,11 +308,14 @@ nav {
     overflow: hidden;
 
     border: 2px solid #334155;
+
+    margin-left: 5px;
 }
 
 .avatar img {
     width: 100%;
     height: 100%;
+
     object-fit: cover;
 }
 
@@ -294,6 +357,7 @@ nav {
 
 .dashboard-header h1 {
     font-size: 34px;
+
     margin-bottom: 8px;
 }
 
@@ -304,7 +368,8 @@ nav {
 .date-box {
     background: #111827;
 
-    border: 1px solid #1e293b;
+    border:
+        1px solid #1e293b;
 
     padding: 14px 18px;
 
@@ -332,13 +397,15 @@ nav {
 }
 
 .stat-card {
-    background: linear-gradient(
-        145deg,
-        #172033,
-        #111827
-    );
+    background:
+        linear-gradient(
+            145deg,
+            #172033,
+            #111827
+        );
 
-    border: 1px solid #263449;
+    border:
+        1px solid #263449;
 
     border-radius: 17px;
 
@@ -355,18 +422,26 @@ nav {
 
 .stat-icon {
     font-size: 25px;
+
     margin-bottom: 15px;
 }
 
 .stat-title {
     color: #94a3b8;
+
     font-size: 13px;
+
     margin-bottom: 7px;
 }
 
 .stat-value {
     font-size: 25px;
+
     font-weight: bold;
+
+    overflow: hidden;
+
+    text-overflow: ellipsis;
 }
 
 
@@ -386,7 +461,8 @@ nav {
 .card {
     background: #111827;
 
-    border: 1px solid #1e293b;
+    border:
+        1px solid #1e293b;
 
     border-radius: 18px;
 
@@ -460,6 +536,10 @@ nav {
     font-weight: 600;
 }
 
+.hero-button:hover {
+    background: #1d4ed8;
+}
+
 
 /* =====================================================
    QUICK ACTIONS
@@ -474,7 +554,8 @@ nav {
 .quick-action {
     background: #0f172a;
 
-    border: 1px solid #1e293b;
+    border:
+        1px solid #1e293b;
 
     padding: 15px;
 
@@ -540,14 +621,18 @@ nav {
 
     overflow: hidden;
 
-    border: 4px solid #1e293b;
+    border:
+        4px solid #1e293b;
 
-    box-shadow: 0 10px 35px rgba(0,0,0,.3);
+    box-shadow:
+        0 10px 35px
+        rgba(0,0,0,.3);
 }
 
 .big-avatar img {
     width: 100%;
     height: 100%;
+
     object-fit: cover;
 }
 
@@ -558,7 +643,8 @@ nav {
 
     color: #cbd5e1;
 
-    border: 1px solid #334155;
+    border:
+        1px solid #334155;
 
     padding: 9px 14px;
 
@@ -581,6 +667,7 @@ nav {
 
 textarea.input {
     resize: vertical;
+
     min-height: 120px;
 }
 
@@ -610,11 +697,12 @@ textarea.input {
 
 
 /* =====================================================
-   GAME
+   DINO GAME
 ===================================================== */
 
 .game-wrapper {
     max-width: 1000px;
+
     margin: auto;
 }
 
@@ -635,7 +723,8 @@ textarea.input {
 .score-box {
     background: #111827;
 
-    border: 1px solid #334155;
+    border:
+        1px solid #334155;
 
     border-radius: 10px;
 
@@ -657,7 +746,8 @@ textarea.input {
 
     border-radius: 18px;
 
-    border: 1px solid #334155;
+    border:
+        1px solid #334155;
 
     display: block;
 
@@ -692,6 +782,567 @@ textarea.input {
     font-weight: bold;
 }
 
+.game-button:hover {
+    background: #1d4ed8;
+}
+
+
+/* =====================================================
+   AI ASSISTANT
+===================================================== */
+
+#ai.page {
+    max-width: none;
+
+    padding: 0;
+
+    height: calc(100vh - 72px);
+
+    overflow: hidden;
+}
+
+.ai-app {
+    height: 100%;
+
+    display: grid;
+
+    grid-template-columns:
+        260px 1fr;
+
+    max-width: 1450px;
+
+    margin: auto;
+
+    background: #0b1120;
+}
+
+
+/* AI SIDEBAR */
+
+.ai-sidebar {
+    border-right:
+        1px solid #1e293b;
+
+    background: #0f172a;
+
+    padding: 18px;
+
+    overflow-y: auto;
+}
+
+.new-chat-button {
+    width: 100%;
+
+    border:
+        1px solid #334155;
+
+    background: #172033;
+
+    color: white;
+
+    padding: 13px;
+
+    border-radius: 10px;
+
+    cursor: pointer;
+
+    font-weight: 600;
+
+    text-align: left;
+
+    transition: .2s;
+}
+
+.new-chat-button:hover {
+    background: #1e293b;
+
+    border-color: #3b82f6;
+}
+
+.ai-sidebar-title {
+    color: #64748b;
+
+    font-size: 12px;
+
+    text-transform: uppercase;
+
+    margin: 25px 5px 10px;
+}
+
+.chat-item {
+    width: 100%;
+
+    padding: 12px;
+
+    border: none;
+
+    background: transparent;
+
+    color: #cbd5e1;
+
+    text-align: left;
+
+    border-radius: 9px;
+
+    cursor: pointer;
+
+    margin-bottom: 4px;
+
+    overflow: hidden;
+
+    text-overflow: ellipsis;
+
+    white-space: nowrap;
+
+    transition: .2s;
+}
+
+.chat-item:hover,
+.chat-item.active {
+    background: #1e293b;
+
+    color: white;
+}
+
+
+/* AI MAIN */
+
+.ai-main {
+    display: flex;
+
+    flex-direction: column;
+
+    min-width: 0;
+
+    min-height: 0;
+}
+
+.ai-topbar {
+    min-height: 70px;
+
+    padding: 15px 25px;
+
+    border-bottom:
+        1px solid #1e293b;
+
+    display: flex;
+
+    justify-content: space-between;
+
+    align-items: center;
+}
+
+.ai-topbar h1 {
+    font-size: 20px;
+
+    margin-bottom: 3px;
+}
+
+.ai-topbar span {
+    color: #64748b;
+
+    font-size: 12px;
+}
+
+.clear-chat-button {
+    border:
+        1px solid #334155;
+
+    background: #111827;
+
+    color: #cbd5e1;
+
+    padding: 9px 13px;
+
+    border-radius: 8px;
+
+    cursor: pointer;
+}
+
+.clear-chat-button:hover {
+    background: #1e293b;
+}
+
+
+/* AI MESSAGES */
+
+.ai-messages {
+    flex: 1;
+
+    overflow-y: auto;
+
+    padding: 30px;
+
+    scroll-behavior: smooth;
+}
+
+.ai-welcome {
+    max-width: 700px;
+
+    margin: 10vh auto;
+
+    text-align: center;
+}
+
+.ai-welcome-icon {
+    width: 70px;
+    height: 70px;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    margin: auto;
+
+    border-radius: 20px;
+
+    background: #172554;
+
+    font-size: 35px;
+}
+
+.ai-welcome h2 {
+    margin-top: 20px;
+
+    font-size: 28px;
+}
+
+.ai-welcome p {
+    color: #64748b;
+
+    margin-top: 8px;
+}
+
+.ai-suggestions {
+    display: flex;
+
+    gap: 10px;
+
+    flex-wrap: wrap;
+
+    justify-content: center;
+
+    margin-top: 25px;
+}
+
+.ai-suggestions button {
+    background: #111827;
+
+    border:
+        1px solid #263449;
+
+    color: #cbd5e1;
+
+    padding: 10px 13px;
+
+    border-radius: 9px;
+
+    cursor: pointer;
+
+    transition: .2s;
+}
+
+.ai-suggestions button:hover {
+    border-color: #3b82f6;
+
+    background: #162033;
+}
+
+
+/* AI MESSAGE */
+
+.ai-message {
+    display: flex;
+
+    gap: 12px;
+
+    max-width: 900px;
+
+    margin: 0 auto 24px;
+}
+
+.ai-message.user {
+    justify-content: flex-end;
+}
+
+.ai-message-avatar {
+    width: 34px;
+    height: 34px;
+
+    min-width: 34px;
+
+    border-radius: 50%;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    background: #2563eb;
+}
+
+.ai-message.assistant
+.ai-message-avatar {
+    background: #172554;
+}
+
+.ai-message-content {
+    max-width: 78%;
+
+    padding: 13px 16px;
+
+    border-radius: 14px;
+
+    background: #111827;
+
+    border:
+        1px solid #1e293b;
+
+    line-height: 1.6;
+
+    white-space: pre-wrap;
+
+    overflow-wrap: anywhere;
+}
+
+.ai-message.user
+.ai-message-content {
+    background: #1d4ed8;
+
+    border-color: #2563eb;
+}
+
+
+/* ATTACHMENT PREVIEW */
+
+.attachment-preview {
+    padding:
+        0 25px 10px;
+}
+
+.attachment-chip {
+    display: inline-flex;
+
+    align-items: center;
+
+    gap: 8px;
+
+    background: #172033;
+
+    border:
+        1px solid #334155;
+
+    padding: 8px 11px;
+
+    border-radius: 9px;
+
+    color: #cbd5e1;
+
+    max-width: 100%;
+
+    overflow: hidden;
+}
+
+.attachment-name {
+    overflow: hidden;
+
+    text-overflow: ellipsis;
+
+    white-space: nowrap;
+
+    max-width: 400px;
+}
+
+.attachment-remove {
+    border: none;
+
+    background: transparent;
+
+    color: #94a3b8;
+
+    cursor: pointer;
+
+    font-size: 16px;
+}
+
+
+/* AI INPUT */
+
+.ai-input-area {
+    padding:
+        15px 25px 20px;
+}
+
+.ai-input-box {
+    max-width: 900px;
+
+    margin: auto;
+
+    display: flex;
+
+    align-items: flex-end;
+
+    gap: 8px;
+
+    background: #111827;
+
+    border:
+        1px solid #334155;
+
+    border-radius: 16px;
+
+    padding: 9px;
+
+    transition: .2s;
+}
+
+.ai-input-box:focus-within {
+    border-color: #3b82f6;
+
+    box-shadow:
+        0 0 0 3px
+        rgba(59,130,246,.08);
+}
+
+.ai-input-box textarea {
+    flex: 1;
+
+    background: transparent;
+
+    border: none;
+
+    outline: none;
+
+    color: white;
+
+    resize: none;
+
+    min-height: 42px;
+
+    max-height: 150px;
+
+    padding: 10px;
+
+    font-size: 15px;
+}
+
+.ai-input-box textarea::placeholder {
+    color: #64748b;
+}
+
+.attach-button,
+.ai-send-button {
+    width: 40px;
+    height: 40px;
+
+    min-width: 40px;
+
+    border: none;
+
+    border-radius: 10px;
+
+    cursor: pointer;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+}
+
+.attach-button {
+    background: #1e293b;
+
+    color: #cbd5e1;
+
+    font-size: 17px;
+}
+
+.attach-button:hover {
+    background: #263449;
+}
+
+.ai-send-button {
+    background: #2563eb;
+
+    color: white;
+
+    font-size: 18px;
+}
+
+.ai-send-button:hover {
+    background: #1d4ed8;
+}
+
+.ai-send-button:disabled {
+    opacity: .5;
+
+    cursor: not-allowed;
+}
+
+.ai-disclaimer {
+    text-align: center;
+
+    color: #475569;
+
+    font-size: 11px;
+
+    margin-top: 8px;
+}
+
+
+/* =====================================================
+   AI LOADING
+===================================================== */
+
+.ai-loading-dots {
+    display: flex;
+
+    gap: 5px;
+
+    align-items: center;
+}
+
+.ai-loading-dots span {
+    width: 6px;
+    height: 6px;
+
+    background: #94a3b8;
+
+    border-radius: 50%;
+
+    animation:
+        aiDot 1.2s infinite ease-in-out;
+}
+
+.ai-loading-dots span:nth-child(2) {
+    animation-delay: .15s;
+}
+
+.ai-loading-dots span:nth-child(3) {
+    animation-delay: .3s;
+}
+
+@keyframes aiDot {
+
+    0%,
+    60%,
+    100% {
+        transform: translateY(0);
+
+        opacity: .4;
+    }
+
+    30% {
+        transform: translateY(-5px);
+
+        opacity: 1;
+    }
+}
+
 
 /* =====================================================
    MOBILE
@@ -713,12 +1364,59 @@ textarea.input {
         align-items: flex-start;
     }
 
+
+    /* AI */
+
+    #ai.page {
+        height:
+            calc(100vh - 62px);
+    }
+
+    .ai-app {
+        grid-template-columns: 1fr;
+    }
+
+    .ai-sidebar {
+        display: none;
+    }
+
+    .ai-topbar {
+        padding:
+            12px 15px;
+    }
+
+    .ai-messages {
+        padding:
+            20px 12px;
+    }
+
+    .ai-message-content {
+        max-width: 85%;
+    }
+
+    .ai-input-area {
+        padding:
+            10px;
+    }
+
+    .clear-chat-button {
+        display: none;
+    }
 }
+
 
 @media(max-width: 600px) {
 
     nav {
-        padding: 0 15px;
+        padding: 0 10px;
+    }
+
+    .logo {
+        font-size: 21px;
+    }
+
+    .nav-right {
+        gap: 2px;
     }
 
     .nav-button {
@@ -731,6 +1429,11 @@ textarea.input {
         display: none;
     }
 
+    .avatar {
+        width: 38px;
+        height: 38px;
+    }
+
     .dashboard-header h1 {
         font-size: 28px;
     }
@@ -741,6 +1444,35 @@ textarea.input {
 
     #gameCanvas {
         height: 260px;
+    }
+
+    .ai-topbar h1 {
+        font-size: 17px;
+    }
+
+    .ai-topbar span {
+        font-size: 10px;
+    }
+
+    .ai-welcome {
+        margin:
+            7vh auto;
+    }
+
+    .ai-welcome h2 {
+        font-size: 23px;
+    }
+
+    .ai-suggestions {
+        flex-direction: column;
+    }
+
+    .ai-suggestions button {
+        width: 100%;
+    }
+
+    .attachment-name {
+        max-width: 200px;
     }
 
 }
@@ -757,21 +1489,32 @@ textarea.input {
      AUTH SCREEN
 ===================================================== -->
 
-<div id="authScreen" class="auth-container">
+<div
+    id="authScreen"
+    class="auth-container"
+>
 
-    <div id="loginBox" class="auth-box">
+    <!-- LOGIN -->
+
+    <div
+        id="loginBox"
+        class="auth-box"
+    >
 
         <div class="logo-title">
             BERAT
         </div>
 
-        <h2>Welcome back</h2>
+        <h2>
+            Welcome back
+        </h2>
 
         <input
             id="loginEmail"
             class="input"
             type="email"
             placeholder="Email"
+            autocomplete="email"
         >
 
         <input
@@ -779,9 +1522,11 @@ textarea.input {
             class="input"
             type="password"
             placeholder="Password"
+            autocomplete="current-password"
         >
 
         <button
+            id="loginButton"
             class="primary-button"
             onclick="login()"
         >
@@ -792,7 +1537,9 @@ textarea.input {
 
             Don't have an account?
 
-            <span onclick="showRegister()">
+            <span
+                onclick="showRegister()"
+            >
                 Register
             </span>
 
@@ -806,6 +1553,8 @@ textarea.input {
     </div>
 
 
+    <!-- REGISTER -->
+
     <div
         id="registerBox"
         class="auth-box"
@@ -816,13 +1565,16 @@ textarea.input {
             BERAT
         </div>
 
-        <h2>Create your account</h2>
+        <h2>
+            Create your account
+        </h2>
 
         <input
             id="registerUsername"
             class="input"
             type="text"
             placeholder="Username"
+            autocomplete="username"
         >
 
         <input
@@ -830,6 +1582,7 @@ textarea.input {
             class="input"
             type="email"
             placeholder="Email"
+            autocomplete="email"
         >
 
         <input
@@ -837,9 +1590,11 @@ textarea.input {
             class="input"
             type="password"
             placeholder="Password"
+            autocomplete="new-password"
         >
 
         <button
+            id="registerButton"
             class="primary-button"
             onclick="register()"
         >
@@ -850,7 +1605,9 @@ textarea.input {
 
             Already have an account?
 
-            <span onclick="showLogin()">
+            <span
+                onclick="showLogin()"
+            >
                 Login
             </span>
 
@@ -873,6 +1630,10 @@ textarea.input {
 <div id="website">
 
 
+<!-- =====================================================
+     NAVBAR
+===================================================== -->
+
 <nav>
 
     <div
@@ -882,28 +1643,44 @@ textarea.input {
         BERAT
     </div>
 
+
     <div class="nav-right">
 
         <button
-            class="nav-button"
+            id="navHome"
+            class="nav-button active"
             onclick="showPage('home')"
         >
             🏠 <span>Home</span>
         </button>
 
+
         <button
+            id="navAI"
+            class="nav-button"
+            onclick="showPage('ai')"
+        >
+            🤖 <span>AI</span>
+        </button>
+
+
+        <button
+            id="navGame"
             class="nav-button"
             onclick="showPage('game')"
         >
             🎮 <span>Game</span>
         </button>
 
+
         <button
+            id="navProfile"
             class="nav-button"
             onclick="showPage('profile')"
         >
             👤 <span>Profile</span>
         </button>
+
 
         <div
             class="avatar"
@@ -941,6 +1718,7 @@ textarea.input {
 
         </div>
 
+
         <div
             id="currentDate"
             class="date-box"
@@ -952,6 +1730,7 @@ textarea.input {
 
 
     <div class="stats">
+
 
         <div class="stat-card">
 
@@ -996,15 +1775,15 @@ textarea.input {
         <div class="stat-card">
 
             <div class="stat-icon">
-                🔐
+                🤖
             </div>
 
             <div class="stat-title">
-                STATUS
+                AI ASSISTANT
             </div>
 
             <div class="stat-value">
-                Active
+                Ready
             </div>
 
         </div>
@@ -1024,15 +1803,15 @@ textarea.input {
                 </h2>
 
                 <p>
-                    Manage your profile, play the Dino Game
-                    and explore your personal dashboard.
+                    Manage your profile, chat with BERAT AI,
+                    upload files and play the Dino Game.
                 </p>
 
                 <button
                     class="hero-button"
-                    onclick="showPage('game')"
+                    onclick="showPage('ai')"
                 >
-                    🎮 Play Dino Game
+                    🤖 Open BERAT AI
                 </button>
 
             </div>
@@ -1073,7 +1852,16 @@ textarea.input {
                     Quickly access your account.
                 </p>
 
+
                 <div class="quick-actions">
+
+                    <button
+                        class="quick-action"
+                        onclick="showPage('ai')"
+                    >
+                        🤖 Ask BERAT AI
+                    </button>
+
 
                     <button
                         class="quick-action"
@@ -1082,12 +1870,14 @@ textarea.input {
                         👤 Edit Profile
                     </button>
 
+
                     <button
                         class="quick-action"
                         onclick="document.getElementById('avatarInput').click()"
                     >
                         📷 Change Photo
                     </button>
+
 
                     <button
                         class="quick-action"
@@ -1101,6 +1891,188 @@ textarea.input {
             </div>
 
         </div>
+
+    </div>
+
+</section>
+
+
+<!-- =====================================================
+     AI ASSISTANT
+===================================================== -->
+
+<section
+    id="ai"
+    class="page"
+>
+
+    <div class="ai-app">
+
+
+        <!-- SIDEBAR -->
+
+        <aside class="ai-sidebar">
+
+            <button
+                class="new-chat-button"
+                onclick="newAIChat()"
+            >
+                ＋ New Chat
+            </button>
+
+
+            <div class="ai-sidebar-title">
+                Recent Chats
+            </div>
+
+
+            <div id="chatList">
+            </div>
+
+        </aside>
+
+
+        <!-- MAIN AI -->
+
+        <main class="ai-main">
+
+
+            <div class="ai-topbar">
+
+                <div>
+
+                    <h1>
+                        🤖 BERAT AI
+                    </h1>
+
+                    <span>
+                        Your personal AI assistant
+                    </span>
+
+                </div>
+
+
+                <button
+                    class="clear-chat-button"
+                    onclick="newAIChat()"
+                >
+                    New Chat
+                </button>
+
+            </div>
+
+
+            <div
+                id="aiMessages"
+                class="ai-messages"
+            >
+
+                <div class="ai-welcome">
+
+                    <div class="ai-welcome-icon">
+                        🤖
+                    </div>
+
+                    <h2>
+                        How can I help you?
+                    </h2>
+
+                    <p>
+                        Ask me anything, upload a photo
+                        or send a document.
+                    </p>
+
+
+                    <div class="ai-suggestions">
+
+
+                        <button
+                            onclick="useSuggestion('Explain this topic simply')"
+                        >
+                            📚 Explain a topic
+                        </button>
+
+
+                        <button
+                            onclick="useSuggestion('Help me with my homework')"
+                        >
+                            📝 Homework help
+                        </button>
+
+
+                        <button
+                            onclick="useSuggestion('Give me some programming ideas')"
+                        >
+                            💻 Programming
+                        </button>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <!-- FILE PREVIEW -->
+
+            <div
+                id="attachmentPreview"
+                class="attachment-preview"
+            >
+            </div>
+
+
+            <!-- INPUT -->
+
+            <div class="ai-input-area">
+
+                <div class="ai-input-box">
+
+
+                    <input
+                        id="aiFileInput"
+                        type="file"
+                        accept="image/*,.pdf,.txt,.doc,.docx"
+                        hidden
+                        onchange="handleAIFile(event)"
+                    >
+
+
+                    <button
+                        class="attach-button"
+                        onclick="document.getElementById('aiFileInput').click()"
+                        title="Upload file"
+                    >
+                        📎
+                    </button>
+
+
+                    <textarea
+                        id="aiInput"
+                        placeholder="Message BERAT AI..."
+                        rows="1"
+                    ></textarea>
+
+
+                    <button
+                        id="aiSendButton"
+                        class="ai-send-button"
+                        onclick="sendAIMessage()"
+                        title="Send"
+                    >
+                        ➤
+                    </button>
+
+                </div>
+
+
+                <div class="ai-disclaimer">
+                    BERAT AI can make mistakes. Check important information.
+                </div>
+
+            </div>
+
+        </main>
 
     </div>
 
@@ -1146,6 +2118,7 @@ textarea.input {
             >
                 📷 Choose Profile Photo
             </label>
+
 
             <input
                 id="avatarInput"
@@ -1209,15 +2182,18 @@ textarea.input {
 
     <div class="game-wrapper">
 
+
         <div class="game-header">
 
             <h1>
                 🦖 Dino Run
             </h1>
 
+
             <div class="score-box">
 
                 SCORE:
+
                 <span id="score">
                     0
                 </span>
@@ -1225,6 +2201,7 @@ textarea.input {
                 &nbsp; | &nbsp;
 
                 BEST:
+
                 <span id="bestScore">
                     0
                 </span>
@@ -1266,6 +2243,7 @@ textarea.input {
 
 </section>
 
+
 </div>
 
 
@@ -1276,16 +2254,16 @@ textarea.input {
 ===================================================== */
 
 const SUPABASE_URL =
-"https://llnvunuhvyiqrqaltxhc.supabase.co";
+    "https://llnvunuhvyiqrqaltxhc.supabase.co";
 
 const SUPABASE_KEY =
-"sb_publishable_Cypd2x0GiQS1_I5GzPxG0Q_jgmuX433";
+    "sb_publishable_Cypd2x0GiQS1_I5GzPxG0Q_jgmuX433";
 
 const supabaseClient =
-window.supabase.createClient(
-    SUPABASE_URL,
-    SUPABASE_KEY
-);
+    window.supabase.createClient(
+        SUPABASE_URL,
+        SUPABASE_KEY
+    );
 
 
 /* =====================================================
@@ -1294,21 +2272,27 @@ window.supabase.createClient(
 
 function showRegister() {
 
-    document.getElementById("loginBox")
-        .style.display = "none";
+    document.getElementById(
+        "loginBox"
+    ).style.display = "none";
 
-    document.getElementById("registerBox")
-        .style.display = "block";
+    document.getElementById(
+        "registerBox"
+    ).style.display = "block";
+
 }
 
 
 function showLogin() {
 
-    document.getElementById("registerBox")
-        .style.display = "none";
+    document.getElementById(
+        "registerBox"
+    ).style.display = "none";
 
-    document.getElementById("loginBox")
-        .style.display = "block";
+    document.getElementById(
+        "loginBox"
+    ).style.display = "block";
+
 }
 
 
@@ -1323,15 +2307,18 @@ async function register() {
             "registerUsername"
         ).value.trim();
 
+
     const email =
         document.getElementById(
             "registerEmail"
         ).value.trim();
 
+
     const password =
         document.getElementById(
             "registerPassword"
         ).value;
+
 
     const message =
         document.getElementById(
@@ -1339,12 +2326,23 @@ async function register() {
         );
 
 
-    if (!username || !email || !password) {
+    const button =
+        document.getElementById(
+            "registerButton"
+        );
+
+
+    if (
+        !username ||
+        !email ||
+        !password
+    ) {
 
         message.textContent =
             "Please fill in all fields.";
 
         return;
+
     }
 
 
@@ -1354,6 +2352,7 @@ async function register() {
             "Username must be at least 3 characters.";
 
         return;
+
     }
 
 
@@ -1363,14 +2362,20 @@ async function register() {
             "Password must be at least 6 characters.";
 
         return;
+
     }
 
+
+    button.disabled = true;
 
     message.textContent =
         "Creating account...";
 
 
-    const { data, error } =
+    const {
+        data,
+        error
+    } =
         await supabaseClient.auth.signUp({
 
             email,
@@ -1394,12 +2399,16 @@ async function register() {
         });
 
 
+    button.disabled = false;
+
+
     if (error) {
 
         message.textContent =
             error.message;
 
         return;
+
     }
 
 
@@ -1409,10 +2418,12 @@ async function register() {
             "Account created! Please confirm your email.";
 
         return;
+
     }
 
 
     await loadUser();
+
 }
 
 
@@ -1427,10 +2438,12 @@ async function login() {
             "loginEmail"
         ).value.trim();
 
+
     const password =
         document.getElementById(
             "loginPassword"
         ).value;
+
 
     const message =
         document.getElementById(
@@ -1438,20 +2451,34 @@ async function login() {
         );
 
 
-    if (!email || !password) {
+    const button =
+        document.getElementById(
+            "loginButton"
+        );
+
+
+    if (
+        !email ||
+        !password
+    ) {
 
         message.textContent =
             "Please enter your email and password.";
 
         return;
+
     }
 
+
+    button.disabled = true;
 
     message.textContent =
         "Logging in...";
 
 
-    const { error } =
+    const {
+        error
+    } =
         await supabaseClient.auth
         .signInWithPassword({
 
@@ -1462,18 +2489,23 @@ async function login() {
         });
 
 
+    button.disabled = false;
+
+
     if (error) {
 
         message.textContent =
             "Invalid email or password.";
 
         return;
+
     }
 
 
     message.textContent = "";
 
     await loadUser();
+
 }
 
 
@@ -1483,37 +2515,51 @@ async function login() {
 
 async function loadUser() {
 
-    const { data, error } =
+    const {
+        data,
+        error
+    } =
         await supabaseClient.auth
         .getUser();
 
 
-    if (error || !data.user) {
+    if (
+        error ||
+        !data.user
+    ) {
 
         return;
+
     }
 
 
-    const user = data.user;
+    const user =
+        data.user;
+
 
     const username =
-        user.user_metadata?.username
-        || "User";
+        user.user_metadata?.username ||
+        "User";
+
 
     const bio =
-        user.user_metadata?.bio
-        || "";
+        user.user_metadata?.bio ||
+        "";
+
 
     const avatar =
-        user.user_metadata?.avatar_url
-        || "";
+        user.user_metadata?.avatar_url ||
+        "";
 
 
-    document.getElementById("authScreen")
-        .style.display = "none";
+    document.getElementById(
+        "authScreen"
+    ).style.display = "none";
 
-    document.getElementById("website")
-        .style.display = "block";
+
+    document.getElementById(
+        "website"
+    ).style.display = "block";
 
 
     updateAvatar(
@@ -1525,19 +2571,21 @@ async function loadUser() {
     document.getElementById(
         "welcomeTitle"
     ).textContent =
-        "Welcome, " + username + " 👋";
+        "Welcome, " +
+        username +
+        " 👋";
 
 
     document.getElementById(
         "homeEmail"
     ).textContent =
-        user.email;
+        user.email || "";
 
 
     document.getElementById(
         "profileEmail"
     ).textContent =
-        user.email;
+        user.email || "";
 
 
     document.getElementById(
@@ -1572,6 +2620,10 @@ async function loadUser() {
 
 
     loadBestScore();
+
+
+    loadAIChats();
+
 }
 
 
@@ -1586,14 +2638,15 @@ function updateAvatar(
 
     const firstLetter =
         username
-        .charAt(0)
-        .toUpperCase();
+            .charAt(0)
+            .toUpperCase();
 
 
     const navAvatar =
         document.getElementById(
             "navAvatar"
         );
+
 
     const bigAvatar =
         document.getElementById(
@@ -1604,19 +2657,62 @@ function updateAvatar(
     if (avatar) {
 
         navAvatar.innerHTML =
-            `<img src="${avatar}">`;
+            "";
+
+
+        const navImage =
+            document.createElement(
+                "img"
+            );
+
+
+        navImage.src =
+            avatar;
+
+
+        navImage.alt =
+            "Profile photo";
+
+
+        navAvatar.appendChild(
+            navImage
+        );
+
 
         bigAvatar.innerHTML =
-            `<img src="${avatar}">`;
+            "";
+
+
+        const bigImage =
+            document.createElement(
+                "img"
+            );
+
+
+        bigImage.src =
+            avatar;
+
+
+        bigImage.alt =
+            "Profile photo";
+
+
+        bigAvatar.appendChild(
+            bigImage
+        );
+
 
     } else {
 
         navAvatar.textContent =
             firstLetter;
 
+
         bigAvatar.textContent =
             firstLetter;
+
     }
+
 }
 
 
@@ -1630,26 +2726,36 @@ async function uploadAvatar(event) {
         event.target.files[0];
 
 
-    if (!file) return;
+    if (!file)
+        return;
 
 
-    if (!file.type.startsWith("image/")) {
+    if (
+        !file.type.startsWith(
+            "image/"
+        )
+    ) {
 
         alert(
             "Please select an image."
         );
 
         return;
+
     }
 
 
-    if (file.size > 5 * 1024 * 1024) {
+    if (
+        file.size >
+        5 * 1024 * 1024
+    ) {
 
         alert(
             "Maximum image size is 5 MB."
         );
 
         return;
+
     }
 
 
@@ -1663,7 +2769,9 @@ async function uploadAvatar(event) {
         "Uploading photo...";
 
 
-    const { data: userData } =
+    const {
+        data: userData
+    } =
         await supabaseClient.auth
         .getUser();
 
@@ -1678,13 +2786,14 @@ async function uploadAvatar(event) {
             "You are not logged in.";
 
         return;
+
     }
 
 
     const fileExt =
         file.name
-        .split(".")
-        .pop();
+            .split(".")
+            .pop();
 
 
     const filePath =
@@ -1693,7 +2802,9 @@ async function uploadAvatar(event) {
         fileExt;
 
 
-    const { error: uploadError } =
+    const {
+        error: uploadError
+    } =
         await supabaseClient.storage
         .from("avatars")
         .upload(
@@ -1701,7 +2812,8 @@ async function uploadAvatar(event) {
             file,
             {
                 upsert: true,
-                contentType: file.type
+                contentType:
+                    file.type
             }
         );
 
@@ -1713,10 +2825,13 @@ async function uploadAvatar(event) {
             uploadError.message;
 
         return;
+
     }
 
 
-    const { data } =
+    const {
+        data
+    } =
         supabaseClient.storage
         .from("avatars")
         .getPublicUrl(
@@ -1730,7 +2845,9 @@ async function uploadAvatar(event) {
         Date.now();
 
 
-    const { error } =
+    const {
+        error
+    } =
         await supabaseClient.auth
         .updateUser({
 
@@ -1750,12 +2867,26 @@ async function uploadAvatar(event) {
             error.message;
 
         return;
+
     }
 
 
+    const {
+        data: freshUserData
+    } =
+        await supabaseClient.auth
+        .getUser();
+
+
+    const username =
+        freshUserData.user
+            ?.user_metadata
+            ?.username ||
+        "User";
+
+
     updateAvatar(
-        user.user_metadata?.username
-        || "User",
+        username,
         avatarUrl
     );
 
@@ -1764,11 +2895,15 @@ async function uploadAvatar(event) {
         "Profile photo updated!";
 
 
-    setTimeout(() => {
+    setTimeout(
+        () => {
 
-        message.textContent = "";
+            message.textContent = "";
 
-    }, 2500);
+        },
+        2500
+    );
+
 }
 
 
@@ -1782,6 +2917,7 @@ async function saveProfile() {
         document.getElementById(
             "profileUsername"
         ).value.trim();
+
 
     const bio =
         document.getElementById(
@@ -1801,6 +2937,7 @@ async function saveProfile() {
             "Username cannot be empty.";
 
         return;
+
     }
 
 
@@ -1808,7 +2945,9 @@ async function saveProfile() {
         "Saving...";
 
 
-    const { data: oldData } =
+    const {
+        data: oldData
+    } =
         await supabaseClient.auth
         .getUser();
 
@@ -1818,11 +2957,14 @@ async function saveProfile() {
 
 
     const avatar =
-        oldUser?.user_metadata?.avatar_url
-        || "";
+        oldUser?.user_metadata
+            ?.avatar_url ||
+        "";
 
 
-    const { error } =
+    const {
+        error
+    } =
         await supabaseClient.auth
         .updateUser({
 
@@ -1846,6 +2988,7 @@ async function saveProfile() {
             error.message;
 
         return;
+
     }
 
 
@@ -1873,11 +3016,15 @@ async function saveProfile() {
         "Profile saved successfully!";
 
 
-    setTimeout(() => {
+    setTimeout(
+        () => {
 
-        message.textContent = "";
+            message.textContent = "";
 
-    }, 2500);
+        },
+        2500
+    );
+
 }
 
 
@@ -1885,29 +3032,113 @@ async function saveProfile() {
    PAGE SWITCH
 ===================================================== */
 
-function showPage(pageName) {
+function showPage(
+    pageName
+) {
 
     document
         .querySelectorAll(".page")
-        .forEach(page => {
+        .forEach(
+            page => {
 
-            page.classList.remove(
-                "active"
-            );
+                page.classList.remove(
+                    "active"
+                );
 
-        });
+            }
+        );
+
+
+    const selectedPage =
+        document.getElementById(
+            pageName
+        );
+
+
+    if (!selectedPage)
+        return;
+
+
+    selectedPage.classList.add(
+        "active"
+    );
 
 
     document
-        .getElementById(pageName)
-        .classList.add("active");
+        .querySelectorAll(".nav-button")
+        .forEach(
+            button => {
+
+                button.classList.remove(
+                    "active"
+                );
+
+            }
+        );
 
 
-    if (pageName === "game") {
+    const navMap = {
+
+        home:
+            "navHome",
+
+        ai:
+            "navAI",
+
+        game:
+            "navGame",
+
+        profile:
+            "navProfile"
+
+    };
+
+
+    const navButton =
+        document.getElementById(
+            navMap[pageName]
+        );
+
+
+    if (navButton) {
+
+        navButton.classList.add(
+            "active"
+        );
+
+    }
+
+
+    if (
+        pageName === "game"
+    ) {
 
         resizeGame();
 
     }
+
+
+    if (
+        pageName === "ai"
+    ) {
+
+        setTimeout(
+            () => {
+
+                loadAIChats();
+
+                document
+                    .getElementById(
+                        "aiInput"
+                    )
+                    .focus();
+
+            },
+            50
+        );
+
+    }
+
 }
 
 
@@ -1917,7 +3148,16 @@ function showPage(pageName) {
 
 async function logout() {
 
-    await supabaseClient.auth.signOut();
+    await supabaseClient
+        .auth
+        .signOut();
+
+
+    currentAIChat = null;
+
+    aiHistory = [];
+
+    clearAIFile();
 
 
     document.getElementById(
@@ -1941,7 +3181,9 @@ async function logout() {
 
 async function checkSession() {
 
-    const { data } =
+    const {
+        data
+    } =
         await supabaseClient.auth
         .getSession();
 
@@ -1951,10 +3193,1215 @@ async function checkSession() {
         await loadUser();
 
     }
+
 }
 
 
 checkSession();
+
+
+/* =====================================================
+   AI VARIABLES
+===================================================== */
+
+let currentAIChat = null;
+
+let aiHistory = [];
+
+let selectedAIFile = null;
+
+
+/* =====================================================
+   AI NEW CHAT
+===================================================== */
+
+async function newAIChat() {
+
+    const {
+        data: userData,
+        error: userError
+    } =
+        await supabaseClient.auth
+        .getUser();
+
+
+    if (
+        userError ||
+        !userData.user
+    ) {
+
+        return;
+
+    }
+
+
+    const user =
+        userData.user;
+
+
+    const {
+        data,
+        error
+    } =
+        await supabaseClient
+        .from("ai_chats")
+        .insert({
+
+            user_id:
+                user.id,
+
+            title:
+                "New Chat"
+
+        })
+        .select()
+        .single();
+
+
+    if (error) {
+
+        console.error(error);
+
+        alert(
+            "Could not create chat. Make sure the AI database tables are created."
+        );
+
+        return;
+
+    }
+
+
+    currentAIChat =
+        data.id;
+
+
+    aiHistory = [];
+
+
+    document.getElementById(
+        "aiMessages"
+    ).innerHTML = `
+
+        <div class="ai-welcome">
+
+            <div class="ai-welcome-icon">
+                🤖
+            </div>
+
+            <h2>
+                How can I help you?
+            </h2>
+
+            <p>
+                Ask me anything, upload a photo
+                or send a document.
+            </p>
+
+        </div>
+
+    `;
+
+
+    clearAIFile();
+
+
+    await loadAIChats();
+
+}
+
+
+/* =====================================================
+   LOAD AI CHATS
+===================================================== */
+
+async function loadAIChats() {
+
+    const {
+        data: userData
+    } =
+        await supabaseClient.auth
+        .getUser();
+
+
+    if (!userData.user)
+        return;
+
+
+    const {
+        data,
+        error
+    } =
+        await supabaseClient
+        .from("ai_chats")
+        .select("*")
+        .order(
+            "updated_at",
+            {
+                ascending: false
+            }
+        );
+
+
+    if (error) {
+
+        console.error(
+            "AI chats error:",
+            error
+        );
+
+        return;
+
+    }
+
+
+    const list =
+        document.getElementById(
+            "chatList"
+        );
+
+
+    if (!list)
+        return;
+
+
+    list.innerHTML = "";
+
+
+    data.forEach(
+        chat => {
+
+            const button =
+                document.createElement(
+                    "button"
+                );
+
+
+            button.className =
+                "chat-item" +
+                (
+                    chat.id === currentAIChat
+                        ? " active"
+                        : ""
+                );
+
+
+            button.textContent =
+                chat.title;
+
+
+            button.title =
+                chat.title;
+
+
+            button.onclick =
+                () =>
+                    loadAIChat(
+                        chat.id
+                    );
+
+
+            list.appendChild(
+                button
+            );
+
+        }
+    );
+
+
+    if (
+        !currentAIChat &&
+        data.length > 0
+    ) {
+
+        await loadAIChat(
+            data[0].id
+        );
+
+    }
+
+}
+
+
+/* =====================================================
+   LOAD SINGLE AI CHAT
+===================================================== */
+
+async function loadAIChat(
+    chatId
+) {
+
+    currentAIChat =
+        chatId;
+
+
+    const {
+        data,
+        error
+    } =
+        await supabaseClient
+        .from("ai_messages")
+        .select("*")
+        .eq(
+            "chat_id",
+            chatId
+        )
+        .order(
+            "created_at",
+            {
+                ascending: true
+            }
+        );
+
+
+    if (error) {
+
+        console.error(
+            "AI messages error:",
+            error
+        );
+
+        return;
+
+    }
+
+
+    aiHistory =
+        data.map(
+            message => ({
+
+                role:
+                    message.role,
+
+                content:
+                    message.content
+
+            })
+        );
+
+
+    const container =
+        document.getElementById(
+            "aiMessages"
+        );
+
+
+    container.innerHTML = "";
+
+
+    if (data.length === 0) {
+
+        container.innerHTML = `
+
+            <div class="ai-welcome">
+
+                <div class="ai-welcome-icon">
+                    🤖
+                </div>
+
+                <h2>
+                    How can I help you?
+                </h2>
+
+                <p>
+                    Ask me anything, upload a photo
+                    or send a document.
+                </p>
+
+            </div>
+
+        `;
+
+    }
+
+
+    data.forEach(
+        message => {
+
+            addAIMessage(
+                message.role,
+                message.content,
+                false
+            );
+
+        }
+    );
+
+
+    container.scrollTop =
+        container.scrollHeight;
+
+
+    await loadAIChats();
+
+}
+
+
+/* =====================================================
+   ADD AI MESSAGE
+===================================================== */
+
+function addAIMessage(
+    role,
+    content,
+    scroll = true
+) {
+
+    const container =
+        document.getElementById(
+            "aiMessages"
+        );
+
+
+    const welcome =
+        container.querySelector(
+            ".ai-welcome"
+        );
+
+
+    if (welcome) {
+
+        welcome.remove();
+
+    }
+
+
+    const message =
+        document.createElement(
+            "div"
+        );
+
+
+    message.className =
+        "ai-message " +
+        role;
+
+
+    const avatar =
+        document.createElement(
+            "div"
+        );
+
+
+    avatar.className =
+        "ai-message-avatar";
+
+
+    avatar.textContent =
+        role === "user"
+            ? "👤"
+            : "🤖";
+
+
+    const contentBox =
+        document.createElement(
+            "div"
+        );
+
+
+    contentBox.className =
+        "ai-message-content";
+
+
+    contentBox.textContent =
+        content;
+
+
+    message.appendChild(
+        avatar
+    );
+
+
+    message.appendChild(
+        contentBox
+    );
+
+
+    container.appendChild(
+        message
+    );
+
+
+    if (scroll) {
+
+        container.scrollTop =
+            container.scrollHeight;
+
+    }
+
+}
+
+
+/* =====================================================
+   AI LOADING
+===================================================== */
+
+function showAILoading() {
+
+    const container =
+        document.getElementById(
+            "aiMessages"
+        );
+
+
+    const loading =
+        document.createElement(
+            "div"
+        );
+
+
+    loading.className =
+        "ai-message assistant";
+
+
+    loading.id =
+        "aiLoading";
+
+
+    loading.innerHTML = `
+
+        <div class="ai-message-avatar">
+            🤖
+        </div>
+
+        <div class="ai-message-content">
+
+            <div class="ai-loading-dots">
+
+                <span></span>
+                <span></span>
+                <span></span>
+
+            </div>
+
+        </div>
+
+    `;
+
+
+    container.appendChild(
+        loading
+    );
+
+
+    container.scrollTop =
+        container.scrollHeight;
+
+}
+
+
+/* =====================================================
+   SEND AI MESSAGE
+===================================================== */
+
+async function sendAIMessage() {
+
+    const input =
+        document.getElementById(
+            "aiInput"
+        );
+
+
+    const message =
+        input.value.trim();
+
+
+    if (
+        !message &&
+        !selectedAIFile
+    ) {
+
+        return;
+
+    }
+
+
+    if (!currentAIChat) {
+
+        await newAIChat();
+
+    }
+
+
+    if (!currentAIChat)
+        return;
+
+
+    const sendButton =
+        document.getElementById(
+            "aiSendButton"
+        );
+
+
+    sendButton.disabled =
+        true;
+
+
+    const finalUserMessage =
+        message ||
+        "Please analyze the uploaded file.";
+
+
+    addAIMessage(
+        "user",
+        finalUserMessage
+    );
+
+
+    const historyForAI =
+        [...aiHistory];
+
+
+    aiHistory.push({
+
+        role:
+            "user",
+
+        content:
+            finalUserMessage
+
+    });
+
+
+    const file =
+        selectedAIFile;
+
+
+    input.value = "";
+
+    input.style.height =
+        "42px";
+
+
+    clearAIFile();
+
+
+    showAILoading();
+
+
+    try {
+
+        let imageData =
+            null;
+
+        let fileData =
+            null;
+
+        let fileName =
+            null;
+
+        let fileType =
+            null;
+
+
+        if (file) {
+
+            const base64 =
+                await fileToBase64(
+                    file
+                );
+
+
+            if (
+                file.type.startsWith(
+                    "image/"
+                )
+            ) {
+
+                imageData =
+                    base64;
+
+            } else {
+
+                fileData =
+                    base64;
+
+                fileName =
+                    file.name;
+
+                fileType =
+                    file.type;
+
+            }
+
+        }
+
+
+        const {
+            data,
+            error
+        } =
+            await supabaseClient
+            .functions
+            .invoke(
+                "ai-chat",
+                {
+
+                    body: {
+
+                        message,
+
+                        history:
+                            historyForAI,
+
+                        imageData,
+
+                        fileData,
+
+                        fileName,
+
+                        fileType
+
+                    }
+
+                }
+            );
+
+
+        const loading =
+            document.getElementById(
+                "aiLoading"
+            );
+
+
+        if (loading) {
+
+            loading.remove();
+
+        }
+
+
+        if (error) {
+
+            throw error;
+
+        }
+
+
+        const answer =
+            data?.answer ||
+            "I couldn't generate a response.";
+
+
+        addAIMessage(
+            "assistant",
+            answer
+        );
+
+
+        aiHistory.push({
+
+            role:
+                "assistant",
+
+            content:
+                answer
+
+        });
+
+
+        await saveAIMessage(
+            "user",
+            finalUserMessage,
+            file
+        );
+
+
+        await saveAIMessage(
+            "assistant",
+            answer,
+            null
+        );
+
+
+        await updateChatTitle(
+            message ||
+            file?.name ||
+            "New Chat"
+        );
+
+
+    } catch (error) {
+
+        console.error(
+            "AI error:",
+            error
+        );
+
+
+        const loading =
+            document.getElementById(
+                "aiLoading"
+            );
+
+
+        if (loading) {
+
+            loading.remove();
+
+        }
+
+
+        addAIMessage(
+            "assistant",
+            "Sorry, something went wrong. Please check your AI setup and try again."
+        );
+
+    }
+
+
+    sendButton.disabled =
+        false;
+
+}
+
+
+/* =====================================================
+   SAVE AI MESSAGE
+===================================================== */
+
+async function saveAIMessage(
+    role,
+    content,
+    file
+) {
+
+    const {
+        data: userData
+    } =
+        await supabaseClient.auth
+        .getUser();
+
+
+    if (!userData.user)
+        return;
+
+
+    const {
+        error
+    } =
+        await supabaseClient
+        .from("ai_messages")
+        .insert({
+
+            chat_id:
+                currentAIChat,
+
+            user_id:
+                userData.user.id,
+
+            role,
+
+            content,
+
+            attachment_name:
+                file?.name || null,
+
+            attachment_type:
+                file?.type || null
+
+        });
+
+
+    if (error) {
+
+        console.error(
+            "Save message error:",
+            error
+        );
+
+    }
+
+}
+
+
+/* =====================================================
+   UPDATE CHAT TITLE
+===================================================== */
+
+async function updateChatTitle(
+    message
+) {
+
+    if (!currentAIChat)
+        return;
+
+
+    let title =
+        message
+            .trim()
+            .slice(
+                0,
+                35
+            );
+
+
+    if (!title) {
+
+        title =
+            "New Chat";
+
+    }
+
+
+    await supabaseClient
+        .from("ai_chats")
+        .update({
+
+            title,
+
+            updated_at:
+                new Date()
+                .toISOString()
+
+        })
+        .eq(
+            "id",
+            currentAIChat
+        );
+
+
+    await loadAIChats();
+
+}
+
+
+/* =====================================================
+   HANDLE AI FILE
+===================================================== */
+
+function handleAIFile(
+    event
+) {
+
+    const file =
+        event.target.files[0];
+
+
+    if (!file)
+        return;
+
+
+    const maxSize =
+        15 *
+        1024 *
+        1024;
+
+
+    if (
+        file.size >
+        maxSize
+    ) {
+
+        alert(
+            "Maximum file size is 15 MB."
+        );
+
+
+        event.target.value =
+            "";
+
+
+        return;
+
+    }
+
+
+    const allowedTypes = [
+
+        "application/pdf",
+
+        "text/plain",
+
+        "application/msword",
+
+        "application/vnd.openxmlformats-officedocument.wordprocessingml.document"
+
+    ];
+
+
+    const isImage =
+        file.type.startsWith(
+            "image/"
+        );
+
+
+    const isAllowedDocument =
+        allowedTypes.includes(
+            file.type
+        );
+
+
+    if (
+        !isImage &&
+        !isAllowedDocument
+    ) {
+
+        alert(
+            "Please select an image, PDF, TXT or Word document."
+        );
+
+
+        event.target.value =
+            "";
+
+
+        return;
+
+    }
+
+
+    selectedAIFile =
+        file;
+
+
+    const preview =
+        document.getElementById(
+            "attachmentPreview"
+        );
+
+
+    let icon =
+        "📎";
+
+
+    if (isImage)
+        icon = "🖼️";
+
+    else if (
+        file.type ===
+        "application/pdf"
+    )
+        icon = "📕";
+
+    else if (
+        file.type.includes(
+            "word"
+        )
+    )
+        icon = "📘";
+
+    else if (
+        file.type ===
+        "text/plain"
+    )
+        icon = "📄";
+
+
+    preview.innerHTML = `
+
+        <div class="attachment-chip">
+
+            <span>
+                ${icon}
+            </span>
+
+            <span class="attachment-name">
+                ${escapeHTML(file.name)}
+            </span>
+
+            <button
+                class="attachment-remove"
+                onclick="clearAIFile()"
+                title="Remove file"
+            >
+                ✕
+            </button>
+
+        </div>
+
+    `;
+
+}
+
+
+/* =====================================================
+   CLEAR AI FILE
+===================================================== */
+
+function clearAIFile() {
+
+    selectedAIFile =
+        null;
+
+
+    const preview =
+        document.getElementById(
+            "attachmentPreview"
+        );
+
+
+    if (preview) {
+
+        preview.innerHTML =
+            "";
+
+    }
+
+
+    const input =
+        document.getElementById(
+            "aiFileInput"
+        );
+
+
+    if (input) {
+
+        input.value =
+            "";
+
+    }
+
+}
+
+
+/* =====================================================
+   FILE TO BASE64
+===================================================== */
+
+function fileToBase64(
+    file
+) {
+
+    return new Promise(
+        (
+            resolve,
+            reject
+        ) => {
+
+            const reader =
+                new FileReader();
+
+
+            reader.onload =
+                () => {
+
+                    resolve(
+                        reader.result
+                    );
+
+                };
+
+
+            reader.onerror =
+                reject;
+
+
+            reader.readAsDataURL(
+                file
+            );
+
+        }
+    );
+
+}
+
+
+/* =====================================================
+   AI SUGGESTION
+===================================================== */
+
+function useSuggestion(
+    text
+) {
+
+    const input =
+        document.getElementById(
+            "aiInput"
+        );
+
+
+    input.value =
+        text;
+
+
+    input.focus();
+
+
+    input.dispatchEvent(
+        new Event(
+            "input"
+        )
+    );
+
+}
+
+
+/* =====================================================
+   ESCAPE HTML
+===================================================== */
+
+function escapeHTML(
+    text
+) {
+
+    const div =
+        document.createElement(
+            "div"
+        );
+
+
+    div.textContent =
+        text;
+
+
+    return div.innerHTML;
+
+}
+
+
+/* =====================================================
+   AI ENTER KEY
+===================================================== */
+
+document
+    .getElementById(
+        "aiInput"
+    )
+    .addEventListener(
+        "keydown",
+        event => {
+
+            if (
+                event.key ===
+                    "Enter" &&
+                !event.shiftKey
+            ) {
+
+                event.preventDefault();
+
+                sendAIMessage();
+
+            }
+
+        }
+    );
+
+
+/* =====================================================
+   AI TEXTAREA AUTO RESIZE
+===================================================== */
+
+document
+    .getElementById(
+        "aiInput"
+    )
+    .addEventListener(
+        "input",
+        function () {
+
+            this.style.height =
+                "42px";
+
+
+            this.style.height =
+                Math.min(
+                    this.scrollHeight,
+                    150
+                ) +
+                "px";
+
+        }
+    );
 
 
 /* =====================================================
@@ -1966,17 +4413,27 @@ const canvas =
         "gameCanvas"
     );
 
+
 const ctx =
-    canvas.getContext("2d");
+    canvas.getContext(
+        "2d"
+    );
 
 
-let gameRunning = false;
+let gameRunning =
+    false;
 
-let gameOver = false;
+
+let gameOver =
+    false;
+
 
 let animationId;
 
-let score = 0;
+
+let score =
+    0;
+
 
 let bestScore =
     Number(
@@ -1985,20 +4442,29 @@ let bestScore =
         )
     ) || 0;
 
-let speed = 6;
 
-let gravity = 0.8;
+let speed =
+    6;
 
-let jumpPower = -14;
 
-let groundY = 280;
+let gravity =
+    0.8;
+
+
+let jumpPower =
+    -14;
+
+
+let groundY =
+    280;
 
 
 const dino = {
 
     x: 80,
 
-    y: groundY - 50,
+    y:
+        groundY - 50,
 
     width: 42,
 
@@ -2011,7 +4477,12 @@ const dino = {
 };
 
 
-let obstacles = [];
+let obstacles =
+    [];
+
+
+let obstacleTimer =
+    0;
 
 
 /* =====================================================
@@ -2021,20 +4492,31 @@ let obstacles = [];
 function resizeGame() {
 
     if (
-        document.getElementById(
-            "game"
-        ).classList.contains("active")
+        document
+            .getElementById(
+                "game"
+            )
+            .classList
+            .contains(
+                "active"
+            )
     ) {
 
         canvas.width =
             canvas.clientWidth;
 
+
         groundY =
-            canvas.height - 65;
+            canvas.height -
+            65;
+
 
         dino.y =
-            groundY - dino.height;
+            groundY -
+            dino.height;
+
     }
+
 }
 
 
@@ -2049,20 +4531,34 @@ function startGame() {
     );
 
 
-    score = 0;
+    score =
+        0;
 
-    speed = 6;
 
-    gameOver = false;
+    speed =
+        6;
 
-    gameRunning = true;
 
-    obstacles = [];
+    gameOver =
+        false;
+
+
+    gameRunning =
+        true;
+
+
+    obstacles =
+        [];
+
+
+    obstacleTimer =
+        0;
 
 
     document.getElementById(
         "score"
-    ).textContent = "0";
+    ).textContent =
+        "0";
 
 
     document.getElementById(
@@ -2075,12 +4571,17 @@ function startGame() {
         groundY -
         dino.height;
 
-    dino.velocityY = 0;
 
-    dino.jumping = false;
+    dino.velocityY =
+        0;
+
+
+    dino.jumping =
+        false;
 
 
     gameLoop();
+
 }
 
 
@@ -2095,6 +4596,7 @@ function jump() {
         startGame();
 
         return;
+
     }
 
 
@@ -2103,8 +4605,12 @@ function jump() {
         dino.velocityY =
             jumpPower;
 
-        dino.jumping = true;
+
+        dino.jumping =
+            true;
+
     }
+
 }
 
 
@@ -2117,13 +4623,28 @@ document.addEventListener(
     event => {
 
         if (
-            event.code === "Space" ||
-            event.code === "ArrowUp"
+            event.code ===
+                "Space" ||
+            event.code ===
+                "ArrowUp"
         ) {
 
-            event.preventDefault();
+            if (
+                document
+                    .getElementById(
+                        "game"
+                    )
+                    .classList
+                    .contains(
+                        "active"
+                    )
+            ) {
 
-            jump();
+                event.preventDefault();
+
+                jump();
+
+            }
 
         }
 
@@ -2170,7 +4691,7 @@ function drawDino() {
         "#111827";
 
 
-    /* body */
+    /* BODY */
 
     ctx.fillRect(
         dino.x,
@@ -2180,7 +4701,7 @@ function drawDino() {
     );
 
 
-    /* head */
+    /* HEAD */
 
     ctx.fillRect(
         dino.x + 20,
@@ -2190,10 +4711,11 @@ function drawDino() {
     );
 
 
-    /* eye */
+    /* EYE */
 
     ctx.fillStyle =
         "white";
+
 
     ctx.fillRect(
         dino.x + 36,
@@ -2203,10 +4725,11 @@ function drawDino() {
     );
 
 
-    /* legs */
+    /* LEGS */
 
     ctx.fillStyle =
         "#111827";
+
 
     ctx.fillRect(
         dino.x + 5,
@@ -2215,12 +4738,14 @@ function drawDino() {
         10
     );
 
+
     ctx.fillRect(
         dino.x + 23,
         dino.y + 45,
         7,
         10
     );
+
 }
 
 
@@ -2239,11 +4764,14 @@ function drawCactus(
     const x =
         obstacle.x;
 
+
     const y =
         obstacle.y;
 
+
     const w =
         obstacle.width;
+
 
     const h =
         obstacle.height;
@@ -2257,7 +4785,7 @@ function drawCactus(
     );
 
 
-    /* left branch */
+    /* LEFT BRANCH */
 
     ctx.fillRect(
         x - 9,
@@ -2265,6 +4793,7 @@ function drawCactus(
         9,
         8
     );
+
 
     ctx.fillRect(
         x - 9,
@@ -2274,7 +4803,7 @@ function drawCactus(
     );
 
 
-    /* right branch */
+    /* RIGHT BRANCH */
 
     ctx.fillRect(
         x + w,
@@ -2283,12 +4812,14 @@ function drawCactus(
         8
     );
 
+
     ctx.fillRect(
         x + w + 3,
         y + 17,
         6,
         16
     );
+
 }
 
 
@@ -2305,15 +4836,20 @@ function createObstacle() {
 
     obstacles.push({
 
-        x: canvas.width + 30,
+        x:
+            canvas.width + 30,
 
-        y: groundY - height,
+        y:
+            groundY -
+            height,
 
-        width: 22,
+        width:
+            22,
 
         height
 
     });
+
 }
 
 
@@ -2341,14 +4877,13 @@ function collision(
         b.y
 
     );
+
 }
 
 
 /* =====================================================
    GAME LOOP
 ===================================================== */
-
-let obstacleTimer = 0;
 
 function gameLoop() {
 
@@ -2364,10 +4899,11 @@ function gameLoop() {
     );
 
 
-    /* sky */
+    /* SKY */
 
     ctx.fillStyle =
         "#f8fafc";
+
 
     ctx.fillRect(
         0,
@@ -2377,10 +4913,11 @@ function gameLoop() {
     );
 
 
-    /* clouds */
+    /* CLOUDS */
 
     ctx.fillStyle =
         "#cbd5e1";
+
 
     ctx.fillRect(
         150,
@@ -2388,6 +4925,7 @@ function gameLoop() {
         70,
         8
     );
+
 
     ctx.fillRect(
         165,
@@ -2405,10 +4943,11 @@ function gameLoop() {
     );
 
 
-    /* ground */
+    /* GROUND */
 
     ctx.fillStyle =
         "#475569";
+
 
     ctx.fillRect(
         0,
@@ -2418,9 +4957,11 @@ function gameLoop() {
     );
 
 
-    /* dino physics */
+    /* DINO PHYSICS */
 
-    dino.velocityY += gravity;
+    dino.velocityY +=
+        gravity;
+
 
     dino.y +=
         dino.velocityY;
@@ -2428,36 +4969,51 @@ function gameLoop() {
 
     if (
         dino.y >=
-        groundY - dino.height
+        groundY -
+        dino.height
     ) {
 
         dino.y =
-            groundY - dino.height;
+            groundY -
+            dino.height;
 
-        dino.velocityY = 0;
 
-        dino.jumping = false;
+        dino.velocityY =
+            0;
+
+
+        dino.jumping =
+            false;
+
     }
 
 
-    /* obstacles */
+    /* OBSTACLES */
 
     obstacleTimer--;
 
-    if (obstacleTimer <= 0) {
+
+    if (
+        obstacleTimer <= 0
+    ) {
 
         createObstacle();
 
+
         obstacleTimer =
             75 +
-            Math.random() * 75;
+            Math.random() *
+            75;
+
     }
 
 
     obstacles.forEach(
         obstacle => {
 
-            obstacle.x -= speed;
+            obstacle.x -=
+                speed;
+
 
             drawCactus(
                 obstacle
@@ -2491,12 +5047,16 @@ function gameLoop() {
     drawDino();
 
 
-    /* score */
+    /* SCORE */
 
-    score += 0.05;
+    score +=
+        0.05;
+
 
     const displayScore =
-        Math.floor(score);
+        Math.floor(
+            score
+        );
 
 
     document.getElementById(
@@ -2513,24 +5073,28 @@ function gameLoop() {
         bestScore =
             displayScore;
 
+
         localStorage.setItem(
             "dinoBest",
             bestScore
         );
+
 
         document.getElementById(
             "bestScore"
         ).textContent =
             bestScore;
 
+
         document.getElementById(
             "statScore"
         ).textContent =
             bestScore;
+
     }
 
 
-    /* gradually increase speed */
+    /* SPEED */
 
     speed =
         6 +
@@ -2544,6 +5108,7 @@ function gameLoop() {
         requestAnimationFrame(
             gameLoop
         );
+
 }
 
 
@@ -2553,13 +5118,22 @@ function gameLoop() {
 
 function endGame() {
 
-    gameRunning = false;
+    gameRunning =
+        false;
 
-    gameOver = true;
+
+    gameOver =
+        true;
+
+
+    cancelAnimationFrame(
+        animationId
+    );
 
 
     ctx.fillStyle =
         "rgba(15,23,42,.72)";
+
 
     ctx.fillRect(
         0,
@@ -2571,6 +5145,7 @@ function endGame() {
 
     ctx.fillStyle =
         "white";
+
 
     ctx.textAlign =
         "center";
@@ -2596,6 +5171,7 @@ function endGame() {
         canvas.width / 2,
         canvas.height / 2 + 30
     );
+
 }
 
 
@@ -2623,11 +5199,12 @@ function loadBestScore() {
         "statScore"
     ).textContent =
         bestScore;
+
 }
 
 
 /* =====================================================
-   RESIZE
+   WINDOW RESIZE
 ===================================================== */
 
 window.addEventListener(
@@ -2637,6 +5214,7 @@ window.addEventListener(
 
 
 loadBestScore();
+
 
 resizeGame();
 
