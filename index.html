@@ -2195,6 +2195,35 @@ textarea.input {
 
 }
 
+.chat-item-container {
+    display: flex;
+    align-items: center;
+    width: 100%;
+    gap: 4px;
+}
+
+.chat-item-container .chat-item {
+    flex: 1;
+    min-width: 0;
+}
+
+.chat-delete-btn {
+    width: 34px;
+    height: 34px;
+    border: none;
+    border-radius: 8px;
+    background: transparent;
+    cursor: pointer;
+    opacity: 0.6;
+    transition: 0.2s ease;
+    flex-shrink: 0;
+}
+
+.chat-delete-btn:hover {
+    opacity: 1;
+    background: rgba(239, 68, 68, 0.15);
+}
+
 </style>
 
 </head>
@@ -4124,10 +4153,8 @@ async function loadAIChats() {
         await supabaseClient.auth
         .getUser();
 
-
     if (!userData.user)
         return;
-
 
     const {
         data,
@@ -4143,7 +4170,6 @@ async function loadAIChats() {
             }
         );
 
-
     if (error) {
 
         console.error(
@@ -4152,31 +4178,34 @@ async function loadAIChats() {
         );
 
         return;
-
     }
-
 
     const list =
         document.getElementById(
             "chatList"
         );
 
-
     if (!list)
         return;
 
-
     list.innerHTML = "";
-
 
     data.forEach(
         chat => {
+
+            const container =
+                document.createElement(
+                    "div"
+                );
+
+            container.className =
+                "chat-item-container";
+
 
             const button =
                 document.createElement(
                     "button"
                 );
-
 
             button.className =
                 "chat-item" +
@@ -4186,14 +4215,11 @@ async function loadAIChats() {
                         : ""
                 );
 
-
             button.textContent =
                 chat.title;
 
-
             button.title =
                 chat.title;
-
 
             button.onclick =
                 () =>
@@ -4202,8 +4228,42 @@ async function loadAIChats() {
                     );
 
 
-            list.appendChild(
+            const deleteButton =
+                document.createElement(
+                    "button"
+                );
+
+            deleteButton.className =
+                "chat-delete-btn";
+
+            deleteButton.innerHTML =
+                "🗑️";
+
+            deleteButton.title =
+                "Delete chat";
+
+            deleteButton.onclick =
+                async (event) => {
+
+                    event.stopPropagation();
+
+                    await deleteAIChat(
+                        chat.id
+                    );
+
+                };
+
+
+            container.appendChild(
                 button
+            );
+
+            container.appendChild(
+                deleteButton
+            );
+
+            list.appendChild(
+                container
             );
 
         }
@@ -4223,6 +4283,91 @@ async function loadAIChats() {
 
 }
 
+async function deleteAIChat(chatId) {
+
+    const confirmed =
+        confirm(
+            "Are you sure you want to delete this chat?"
+        );
+
+    if (!confirmed)
+        return;
+
+
+    try {
+
+        // Delete messages
+        const {
+            error: messagesError
+        } =
+            await supabaseClient
+            .from("ai_messages")
+            .delete()
+            .eq(
+                "chat_id",
+                chatId
+            );
+
+
+        if (messagesError)
+            throw messagesError;
+
+
+        // Delete chat
+        const {
+            error: chatError
+        } =
+            await supabaseClient
+            .from("ai_chats")
+            .delete()
+            .eq(
+                "id",
+                chatId
+            );
+
+
+        if (chatError)
+            throw chatError;
+
+
+        // If this chat is currently open
+        if (
+            currentAIChat === chatId
+        ) {
+
+            currentAIChat = null;
+
+            aiHistory = [];
+
+            const messages =
+                document.getElementById(
+                    "aiMessages"
+                );
+
+            if (messages)
+                messages.innerHTML = "";
+
+        }
+
+
+        // Refresh chat list
+        await loadAIChats();
+
+
+    } catch (error) {
+
+        console.error(
+            "Delete AI chat error:",
+            error
+        );
+
+        alert(
+            "Could not delete this chat."
+        );
+
+    }
+
+}
 
 /* =====================================================
    LOAD SINGLE AI CHAT
