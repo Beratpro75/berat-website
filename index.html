@@ -2968,14 +2968,6 @@ function getAutomaticTheme() {
     const hour =
         new Date().getHours();
 
-    /*
-       Day:
-       07:00 - 18:59
-
-       Night:
-       19:00 - 06:59
-    */
-
     if (
         hour >= 7 &&
         hour < 19
@@ -3062,12 +3054,6 @@ function setTheme(theme) {
 
 }
 
-
-/*
-   Check the time every minute.
-   This means AUTO mode changes
-   automatically without refreshing.
-*/
 
 applyTheme();
 
@@ -4507,6 +4493,7 @@ function showAILoading() {
 
 /* =====================================================
    SEND AI MESSAGE
+   FIXED VERSION
 ===================================================== */
 
 async function sendAIMessage() {
@@ -4514,6 +4501,12 @@ async function sendAIMessage() {
     const input =
         document.getElementById(
             "aiInput"
+        );
+
+
+    const sendButton =
+        document.getElementById(
+            "aiSendButton"
         );
 
 
@@ -4531,6 +4524,11 @@ async function sendAIMessage() {
     }
 
 
+    /*
+       Create a chat if there isn't
+       one already.
+    */
+
     if (!currentAIChat) {
 
         await newAIChat();
@@ -4538,24 +4536,57 @@ async function sendAIMessage() {
     }
 
 
-    if (!currentAIChat)
+    if (!currentAIChat) {
+
         return;
 
-
-    const sendButton =
-        document.getElementById(
-            "aiSendButton"
-        );
+    }
 
 
     sendButton.disabled =
         true;
 
 
+    /*
+       If only a file was uploaded,
+       give the backend a real message.
+    */
+
     const finalUserMessage =
         message ||
         "Please analyze the uploaded file.";
 
+
+    /*
+       IMPORTANT:
+       Take the history BEFORE adding
+       the current user message.
+
+       Also limit it to the last 20
+       messages to keep requests smaller.
+    */
+
+    const historyForAI =
+        aiHistory
+            .slice(-20)
+            .map(
+                item => ({
+
+                    role:
+                        item.role,
+
+                    content:
+                        String(
+                            item.content
+                        )
+
+                })
+            );
+
+
+    /*
+       Show user message
+    */
 
     addAIMessage(
         "user",
@@ -4563,9 +4594,9 @@ async function sendAIMessage() {
     );
 
 
-    const historyForAI =
-        [...aiHistory];
-
+    /*
+       Add user message to local history
+    */
 
     aiHistory.push({
 
@@ -4609,6 +4640,11 @@ async function sendAIMessage() {
             null;
 
 
+        /*
+           Convert uploaded file
+           to Base64.
+        */
+
         if (file) {
 
             const base64 =
@@ -4618,6 +4654,7 @@ async function sendAIMessage() {
 
 
             if (
+                file.type &&
                 file.type.startsWith(
                     "image/"
                 )
@@ -4642,6 +4679,10 @@ async function sendAIMessage() {
         }
 
 
+        /*
+           Call Supabase Edge Function
+        */
+
         const {
             data,
             error
@@ -4654,7 +4695,16 @@ async function sendAIMessage() {
 
                     body: {
 
-                        message,
+                        /*
+                           IMPORTANT:
+                           Send finalUserMessage,
+                           not the empty original
+                           message when only a file
+                           was uploaded.
+                        */
+
+                        message:
+                            finalUserMessage,
 
                         history:
                             historyForAI,
@@ -4673,6 +4723,10 @@ async function sendAIMessage() {
             );
 
 
+        /*
+           Remove loading animation
+        */
+
         const loading =
             document.getElementById(
                 "aiLoading"
@@ -4686,24 +4740,84 @@ async function sendAIMessage() {
         }
 
 
+        /*
+           Supabase invocation error
+        */
+
         if (error) {
 
-            throw error;
+            console.error(
+                "Supabase AI error:",
+                error
+            );
+
+
+            throw new Error(
+                error.message ||
+                "The AI function could not be reached."
+            );
 
         }
 
 
-        const answer =
-            data?.answer ||
-            data?.reply ||
-            "I couldn't generate a response.";
+        /*
+           Edge Function returned
+           its own error.
+        */
 
+        if (data?.error) {
+
+            console.error(
+                "AI backend error:",
+                data.error
+            );
+
+
+            throw new Error(
+                data.error
+            );
+
+        }
+
+
+        /*
+           Get AI response.
+        */
+
+        const answer =
+            data?.answer ??
+            data?.reply;
+
+
+        if (!answer) {
+
+            console.error(
+                "Unexpected AI response:",
+                data
+            );
+
+
+            throw new Error(
+                "The AI returned an empty response."
+            );
+
+        }
+
+
+        /*
+           Show AI response
+        */
 
         addAIMessage(
             "assistant",
             answer
         );
 
+
+        /*
+           Save AI response
+           to local history.
+        */
 
         aiHistory.push({
 
@@ -4716,6 +4830,10 @@ async function sendAIMessage() {
         });
 
 
+        /*
+           Save user message
+        */
+
         await saveAIMessage(
             "user",
             finalUserMessage,
@@ -4723,12 +4841,20 @@ async function sendAIMessage() {
         );
 
 
+        /*
+           Save AI response
+        */
+
         await saveAIMessage(
             "assistant",
             answer,
             null
         );
 
+
+        /*
+           Update chat title
+        */
 
         await updateChatTitle(
             message ||
@@ -4745,6 +4871,11 @@ async function sendAIMessage() {
         );
 
 
+        /*
+           Remove loading animation
+           if an error happened.
+        */
+
         const loading =
             document.getElementById(
                 "aiLoading"
@@ -4758,16 +4889,37 @@ async function sendAIMessage() {
         }
 
 
+        /*
+           Show the actual error.
+           This makes debugging much
+           easier than the old generic
+           error message.
+        */
+
         addAIMessage(
             "assistant",
-            "Sorry, something went wrong. Please check your AI setup and try again."
+            "AI Error: " +
+            (
+                error?.message ||
+                "Something went wrong."
+            )
         );
 
+
+    } finally {
+
+        /*
+           Always enable the send button
+           again, even if an error happens.
+        */
+
+        sendButton.disabled =
+            false;
+
+
+        input.focus();
+
     }
-
-
-    sendButton.disabled =
-        false;
 
 }
 
@@ -6008,6 +6160,8 @@ loadBestScore();
 
 
 resizeGame();
+
+
 
 
 </script>
